@@ -21,10 +21,13 @@ for row in data:
 app=sorted(set(app));raw,_=rows('presented.xml');swaps=sorted(set(int(row[0].text)for row in raw))
 if not app or not swaps:raise SystemExit('Missing presentation or display events')
 lo=max(app[0],swaps[0])+250_000_000;hi=min(app[-1],swaps[-1])-250_000_000
+all_app,all_swaps=app,swaps
 app=[x for x in app if lo<=x<=hi];swaps=[x for x in swaps if lo<=x<=hi]
 def nearest(x,series):
     i=bisect.bisect_left(series,x);return min(abs(x-y)for y in series[max(0,i-1):i+1])
-errors=[nearest(x,swaps)for x in app];reverse=[nearest(x,app)for x in swaps]
+# Keep the opposite series untrimmed: rounding can put an otherwise matching
+# counterpart just outside the common boundary.
+errors=[nearest(x,all_swaps)for x in app];reverse=[nearest(x,all_app)for x in swaps]
 result=dict(valid=bool(errors and reverse)and max(errors)<=250 and max(reverse)<=250,
             application_presentations=len(app),display_swaps=len(swaps),
             max_app_to_swap_error_ns=max(errors,default=None),max_swap_to_app_error_ns=max(reverse,default=None),

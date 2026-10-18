@@ -23,3 +23,5 @@ A lighter Frame Lifetimes capture exports the raw `display-surface-swap` schema.
 `inspect-replay.swift` provides read-only clock/seek-state OCR outside measurement intervals. `hold-center` holds Space during a sample so the original replay player's camera path can be repeated across backends.
 
 A temporary AppInit DPI initializer experiment did not produce a qualified load or viewport fix. Its registry values were removed. It is not part of the working launch configuration. The native display-mode helper stores the original mode privately and can restore it with `display-mode restore`; changes use session scope.
+
+The absolute trace-epoch cross-check now matches1708 interior application presentations to1708 raw swaps in the reference capture, in both directions, with a maximum discrepancy of167ns. It does not fit a time offset or rate. This is calibration only; the HUD-hidden native winning profile still needs the same simultaneous check.
