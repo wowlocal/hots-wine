@@ -1,8 +1,8 @@
 {
   "status": "in_progress",
   "target_verified": false,
-  "step": "First HUD-hidden native Ultra fight passes numerical acceptance",
-  "current_issue": "Validating two later fights and repeating presentation attribution without the HUD.",
+  "step": "Validated three native Ultra HUD-hidden fight sections",
+  "current_issue": "One of three sections passed all gates; two had2\u20133 missed refreshes and failed the strict1% low. Testing render headroom180 and mouse-lag reduction disabled.",
   "previous_samples_valid_for_target": false,
   "render_resolution_verified": [
     3456,

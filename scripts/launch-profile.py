@@ -37,6 +37,7 @@ def main():
     values.update(frameratecap=str(profile['game_cap']),lastDeviceId=str(profile.get('last_device_id',26640)),enablefunctionkeys='true')
     values['displaymode']=str(profile.get('display_mode',1))
     values.update(windowwidth='3456',windowheight='2234',windowx='0',windowy='0')
+    if 'reduce_mouse_lag' in profile:values['reducemouselagenabled']='true' if profile['reduce_mouse_lag'] else 'false'
     variables.write_text(''.join(f'{k}={v}\n' for k,v in sorted(values.items())))
     replay=next(DOCS.rglob('*16.02.25 Cursed Hollow.StormReplay'))
     replay_win='C:\\'+str(replay.relative_to(BOTTLE/'drive_c')).replace('/','\\')
@@ -51,13 +52,17 @@ def main():
     (out/'launch.json').write_text(json.dumps({'profile':a.profile,'env':env,'pid':game[0]},indent=2)+'\n')
     print(f'Game PID {game[0]}; profile {a.profile}; private logs {out}',flush=True)
     if a.prepare_replay:
-        # Read the clock rather than assuming that map loading finished on time.
-        until=time.monotonic()+120
-        resized=False
+        # Let parallel asset/shader loading settle before changing the viewport.
+        time.sleep(30)
+        until=time.monotonic()+180
+        quiet_since=None
         while time.monotonic()<until:
             try:
-                if not resized:
-                    helper('display=1');helper('native=1');resized=True
+                cpu=float(subprocess.check_output(['ps','-p',str(game[0]),'-o','%cpu='],text=True).strip())
+                if cpu>300:quiet_since=None;time.sleep(2);continue
+                if quiet_since is None:quiet_since=time.monotonic()
+                if time.monotonic()-quiet_since<8:time.sleep(2);continue
+                helper('display=1');helper('native=1')
                 state=json.loads(subprocess.check_output([str(BASE/'inspect-replay'),str(game[0]),str(out/'loaded.png')],text=True))
                 if any(s not in ('00:00','-00:00') for s in state['clock']) and not any('Seeking' in s for s in state['state']):break
             except (subprocess.CalledProcessError,json.JSONDecodeError):pass
