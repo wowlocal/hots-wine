@@ -6,3 +6,6 @@ ExitProcess
 GetStdHandle
 WriteFile
 GetModuleFileNameA
+LoadLibraryA
+GetProcAddress
+FreeLibrary

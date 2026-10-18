@@ -3,6 +3,14 @@
   "upstream_candidate": "v0.80",
   "release": "https://github.com/3Shain/dxmt/releases/tag/v0.80",
   "archive_sha256": "8f260e36b5739e68f3bad613381441385c4dc7b85b78ba8de653d5a6a264529d",
-  "status": "Downloaded into private runtime directory; not active or performance tested",
-  "installed_crossover_modified": false
+  "status": "Isolated overlay loaded upstream d3d11/dxgi/winemetal modules; D3D11CreateDevice returned S_OK. Full game performance untested.",
+  "installed_crossover_modified": false,
+  "loader": "Private CX_ROOT overlay; installed CrossOver files and authenticated Battle.net unchanged",
+  "device_probe_hresult": "00000000",
+  "runtime_modules_verified": [
+    "d3d11.dll",
+    "dxgi.dll",
+    "winemetal.dll",
+    "winemetal.so"
+  ]
 }
