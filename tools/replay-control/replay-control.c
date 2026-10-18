@@ -11,6 +11,8 @@ __declspec(dllimport) int __stdcall ClientToScreen(void*,POINT*);
 __declspec(dllimport) int __stdcall SetCursorPos(int,int);
 __declspec(dllimport) void __stdcall mouse_event(DWORD,DWORD,DWORD,DWORD,ULONG_PTR);
 __declspec(dllimport) int __stdcall SetWindowPos(void*,void*,int,int,int,int,unsigned int);
+__declspec(dllimport) int __stdcall EnumDisplaySettingsW(const unsigned short*,DWORD,void*);
+__declspec(dllimport) long __stdcall ChangeDisplaySettingsW(void*,DWORD);
 __declspec(dllimport) void __stdcall Sleep(DWORD);
 __declspec(dllimport) char* __stdcall GetCommandLineA(void);
 __declspec(dllimport) void __stdcall ExitProcess(unsigned int);
@@ -21,6 +23,14 @@ void mainCRTStartup(void) {
  Sleep(250);
  char* line=GetCommandLineA();
  char* keys=0;
+ for(char* p=line;*p;p++) if(p[0]==' ' && p[1]=='d' && p[2]=='i' && p[3]=='s' && p[4]=='p' && p[5]=='l' && p[6]=='a' && p[7]=='y' && p[8]=='=' && p[9]=='1') {
+  volatile unsigned char mode[220];for(int i=0;i<220;i++) mode[i]=0;
+  *(unsigned short*)(mode+68)=220;
+  if(!EnumDisplaySettingsW(0,(DWORD)-1,(void*)mode)) ExitProcess(6);
+  *(DWORD*)(mode+72)=0x180000; // DM_PELSWIDTH | DM_PELSHEIGHT
+  *(DWORD*)(mode+172)=3456;*(DWORD*)(mode+176)=2234;
+  ExitProcess(ChangeDisplaySettingsW((void*)mode,4)==0 ? 0 : 7);
+ }
  // Explicit native-resolution borderless client; needed with an older live Wine desktop.
  for(char* p=line;*p;p++) if(p[0]==' ' && p[1]=='n' && p[2]=='a' && p[3]=='t' && p[4]=='i' && p[5]=='v' && p[6]=='e' && p[7]=='=' && p[8]=='1') {
   ExitProcess(SetWindowPos(window,0,0,0,3456,2234,0x24) ? 0 : 5);

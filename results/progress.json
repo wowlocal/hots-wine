@@ -1,8 +1,8 @@
 {
   "status": "in_progress",
   "target_verified": false,
-  "step": "Engine-generated Ultra preset verified and saved",
-  "current_issue": "Low-overhead actual-present-time recorder is being integrated. Backend comparisons remain outstanding.",
+  "step": "Verified Ultra and full native rendering together",
+  "current_issue": "Collecting controlled foreground fight samples; frame-probe prototype remains unqualified.",
   "previous_samples_valid_for_target": false,
   "render_resolution_verified": [
     3456,
@@ -10,5 +10,13 @@
   ],
   "resolution_evidence": "Metal HUD reports 3456x2234; CGWindow bounds cover the 1728x1117-point Retina display. Full game viewport visible.",
   "battle_net_session_preserved": true,
-  "ultra_preset_verified": true
+  "ultra_preset_verified": true,
+  "effective_backend": "dxmt",
+  "adapter_metadata_override": {
+    "vendor": "1002",
+    "device": "6810"
+  },
+  "retina_mode": true,
+  "registry_dpi": 96,
+  "display_mode_refresh": "Explicit Wine ChangeDisplaySettingsW(3456x2234) and client resize; Metal HUD confirms3456x2234."
 }

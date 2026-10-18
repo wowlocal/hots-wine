@@ -8,3 +8,5 @@ ClientToScreen
 SetCursorPos
 mouse_event
 SetWindowPos
+EnumDisplaySettingsW
+ChangeDisplaySettingsW
