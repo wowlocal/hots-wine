@@ -2,10 +2,10 @@ import CoreGraphics
 import Foundation
 
 // Session-only display geometry; original mode is retained for restoration.
-guard CommandLine.arguments.count==2, ["native1x","restore"].contains(CommandLine.arguments[1]) else {exit(2)}
+guard (2...3).contains(CommandLine.arguments.count), ["native1x","restore"].contains(CommandLine.arguments[1]) else {exit(2)}
 let display=CGMainDisplayID()
 let base=FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("Library/Application Support/CrossOver/HotS-Setup")
-let backup=base.appendingPathComponent("display-mode-backup.json")
+let backup=CommandLine.arguments.count==3 ? URL(fileURLWithPath:CommandLine.arguments[2]) : base.appendingPathComponent("display-mode-backup.json")
 guard let current=CGDisplayCopyDisplayMode(display),let modes=CGDisplayCopyAllDisplayModes(display,[kCGDisplayShowDuplicateLowResolutionModes:true] as CFDictionary) as? [CGDisplayMode] else {exit(3)}
 let mode:CGDisplayMode
 if CommandLine.arguments[1]=="native1x" {

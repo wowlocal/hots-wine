@@ -28,6 +28,8 @@ This repository contains our scripts, configuration targets, and sanitized measu
 
 `scripts/launch-profile.py PROFILE --game` opens the normal game through its Switcher using the existing session; omitting `--game` opens the local benchmark replay. The normal-game path is pending live verification. It preserves the current function-key preference. Restart operations now verify the game's working directory belongs to this bottle and accept updated game build numbers. They never stop Battle.net or wineserver.
 
+`scripts/play-game.py PROFILE` additionally sets a temporary native1× display mode and disables Wine Retina conversion for the game's startup. It retains a private per-launch display/registry backup and restores both when the game exits. Its process-exit monitor uses macOS kernel notifications, without a polling loop. This wrapper is pending a live normal-game launch/exit check.
+
 ## Measurement protocol
 
 1. Verify render-target dimensions, preset definitions, and effective graphics variables.
