@@ -1,8 +1,8 @@
 {
   "status": "in_progress",
   "target_verified": false,
-  "step": "Comparing synchronization and pacing at native Ultra",
-  "current_issue": "Metal-paced120 passed one fight but missed2\u20133 refreshes in two others. Unpaced180 was rejected; the VSync120 three-fight repeat is running.",
+  "step": "VSync120 three-fight audit complete; qualify live frame attribution",
+  "current_issue": "VSync120 passed only fight2; fight1 had two and fight3 five missed refreshes. No profile passes all three strict1% lows.",
   "previous_samples_valid_for_target": false,
   "render_resolution_verified": [
     3456,
