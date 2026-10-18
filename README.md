@@ -6,9 +6,9 @@ Target: **3456 × 2234, Ultra, stable 120 FPS**, with native rendering and no ge
 
 ## Current status
 
-The Windows game and Battle.net work in a dedicated CrossOver 26.3 bottle. The target has **not** passed validation. Earlier reduced-quality, half-resolution and static-base samples do not establish target performance.
+The Windows game and Battle.net work in a dedicated CrossOver 26.3 bottle. Performance testing has finished. The target has **not** passed validation. Earlier reduced-quality, half-resolution and static-base samples do not establish target performance.
 
-Native 3456 × 2234 rendering is now confirmed by the Metal HUD. The replay helper corrects the cropped window caused by enabling Retina reporting while the authenticated Wine desktop remains open. The game-generated Ultra preset is retained. Target performance is still being verified.
+Native 3456 × 2234 rendering is now confirmed by the Metal HUD. The replay helper corrects the cropped window caused by enabling Retina reporting while the authenticated Wine desktop remains open. The game-generated Ultra preset is retained. The best measured profile is bundled DXMT with Metal pacing at120; occasional missed refreshes prevent the strict1%low target.
 
 DXVK's tested native VSync profile is rejected: it fails the frame-time target and corrupts the spectator hero-portrait bar. The normal-game launcher refuses that known-bad profile. A paused scene between captures is deliberate while Instruments processes its trace, which can take several minutes; it must not be mistaken for a game hang. Visual correctness is a separate prerequisite for accepting performance results.
 
@@ -19,8 +19,9 @@ DXVK's tested native VSync profile is rejected: it fails the frame-time target a
 | D3DMetal VSync, warmed first fight | 117.63 | 60.00 | 16.67 | 16.67 | Fails |
 | DXVK VSync, warmed first fight | 119.71 | 96.72 | 8.33 | 20.83 | Fails; portrait corruption |
 | Upstream DXMT0.80, warmed first fight | 119.55 | 87.57 | 8.33 | 16.67 | Fails; worse pacing |
+| Bundled DXMT, mouse-lag reduction disabled | 119.59 | 90.00 | 8.33 | 20.83 | Fails; final candidate rejected |
 
-All rows use native3456×2234 and the engine-generated Ultra preset. D3DMetal/DXVK used temporary native1× host scaling; the DXMT rows used the original Retina desktop geometry. These are tested configuration bundles, not an isolated measurement of one backend variable. Exact summaries are under `results/`. Bundled DXMT remains the selected baseline; a final isolated mouse-lag setting test is in progress. See [visual validation](docs/visual-validation.md).
+All rows use native3456×2234 and the engine-generated Ultra preset. D3DMetal/DXVK used temporary native1× host scaling; the DXMT rows used the original Retina desktop geometry. These are tested configuration bundles, not an isolated measurement of one backend variable. Exact summaries are under `results/`. Bundled DXMT `dxmt-metal120` remains selected in [configs/recommended.json](configs/recommended.json). Disabling mouse-lag reduction did not improve the final sample. See the [measured outcome](docs/measured-outcome.md). See [visual validation](docs/visual-validation.md).
 
 ## Local layout
 
