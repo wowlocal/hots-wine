@@ -38,6 +38,7 @@ def main():
     values['displaymode']=str(profile.get('display_mode',1))
     values.update(windowwidth='3456',windowheight='2234',windowx='0',windowy='0')
     if 'reduce_mouse_lag' in profile:values['reducemouselagenabled']='true' if profile['reduce_mouse_lag'] else 'false'
+    values['vsync']='true' if profile.get('vsync',False) else 'false'
     variables.write_text(''.join(f'{k}={v}\n' for k,v in sorted(values.items())))
     replay=next(DOCS.rglob('*16.02.25 Cursed Hollow.StormReplay'))
     replay_win='C:\\'+str(replay.relative_to(BOTTLE/'drive_c')).replace('/','\\')
@@ -58,6 +59,7 @@ def main():
         until=time.monotonic()+180
         while time.monotonic()<until:
             try:
+                subprocess.run([str(BASE/'replay-control-native'),str(game[0]),'activate'],check=True,stdout=subprocess.DEVNULL)
                 helper('display=1');helper('native=1')
                 state=json.loads(subprocess.check_output([str(BASE/'inspect-replay'),str(game[0]),str(out/'loaded.png')],text=True))
                 if any(s not in ('00:00','-00:00') for s in state['clock']) and not any('Seeking' in s for s in state['state']):break

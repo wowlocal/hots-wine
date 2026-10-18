@@ -3,7 +3,7 @@
 import argparse,json,subprocess,time
 from pathlib import Path
 
-p=argparse.ArgumentParser();p.add_argument('pid',type=int);p.add_argument('label');p.add_argument('--seconds',type=int,default=40);p.add_argument('--instrument',default='Metal Application');p.add_argument('--schema',default='ca-client-presented-handler');p.add_argument('--hold-center',action='store_true')
+p=argparse.ArgumentParser();p.add_argument('pid',type=int);p.add_argument('label');p.add_argument('--seconds',type=int,default=40);p.add_argument('--instrument',default='Metal Application');p.add_argument('--secondary-instrument');p.add_argument('--schema',default='ca-client-presented-handler');p.add_argument('--hold-center',action='store_true')
 a=p.parse_args();base=Path.home()/'Library/Application Support/CrossOver/HotS-Setup'
 out=base/'benchmarks'/a.label;out.mkdir(exist_ok=False)
 docs=base.parent/'Bottles/Heroes of the Storm/drive_c/users/crossover/Documents/Heroes of the Storm'
@@ -15,7 +15,8 @@ if errors:raise SystemExit(f'Ultra/native settings mismatch: {errors}')
 log=(out/'xctrace.log').open('w')
 focus=subprocess.Popen([str(base/'focus-monitor'),str(a.pid),str(a.seconds+20),str(out/'focus.jsonl')],stdout=log,stderr=log)
 time.sleep(2)
-record=subprocess.Popen(['xcrun','xctrace','record','--instrument',a.instrument,'--attach',str(a.pid),'--time-limit',f'{a.seconds}s','--no-prompt','--output',str(out/'metal.trace')],stdout=log,stderr=log)
+extra=['--instrument',a.secondary_instrument] if a.secondary_instrument else []
+record=subprocess.Popen(['xcrun','xctrace','record','--instrument',a.instrument,*extra,'--attach',str(a.pid),'--time-limit',f'{a.seconds}s','--no-prompt','--output',str(out/'metal.trace')],stdout=log,stderr=log)
 until=time.monotonic()+30
 while 'Ctrl-C to stop' not in (out/'xctrace.log').read_text():
     if record.poll() is not None or time.monotonic()>until:raise SystemExit('Recorder did not become ready; replay left paused')
@@ -39,6 +40,9 @@ if 'Reached specified time limit' in (out/'xctrace.log').read_text():
 record.wait();focus.wait();log.close()
 if record.returncode:raise SystemExit(record.returncode)
 subprocess.run(['xcrun','xctrace','export','--input',str(out/'metal.trace'),'--xpath',f'/trace-toc/run/data/table[@schema="{a.schema}"]','--output',str(out/'presented.xml')],check=True)
+if a.secondary_instrument:
+    for schema,name in [('ca-client-presented-handler','app-presented.xml'),('time-info','time-info.xml')]:
+        subprocess.run(['xcrun','xctrace','export','--input',str(out/'metal.trace'),'--xpath',f'/trace-toc/run/data/table[@schema="{schema}"]','--output',str(out/name)],check=True)
 mode=['--actual-presentation-time'] if a.schema=='ca-client-presented-handler' else []
 if a.schema=='display-surface-swap':mode+=['--foreground-log',str(out/'focus.jsonl')]
 subprocess.run(['python3',str(Path(__file__).with_name('analyze-presented-frames.py')),str(out/'presented.xml'),'--pid',str(a.pid),'--stage','steady-replay-after-warm-seek',*mode,'--trim-start','7','--trim-end','1','--output',str(out/'metrics.json')],check=True)

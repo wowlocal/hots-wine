@@ -61,5 +61,15 @@
     "env": {
       "DXMT_CONFIG": "dxgi.customVendorId=1002;dxgi.customDeviceId=6810;"
     }
+  },
+  "dxmt-vsync120": {
+    "backend": "dxmt",
+    "game_cap": 0,
+    "msync": 1,
+    "vsync": true,
+    "reduce_mouse_lag": false,
+    "env": {
+      "DXMT_CONFIG": "dxgi.customVendorId=1002;dxgi.customDeviceId=6810;d3d11.preferredMaxFrameRate=120;"
+    }
   }
 }

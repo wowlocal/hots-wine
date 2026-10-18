@@ -1,0 +1,27 @@
+{
+  "stage": "steady-replay-after-warm-seek",
+  "metric": "Global compositor surface swaps; full-display foreground attribution must be verified",
+  "schema": "display-surface-swap",
+  "trim_start_seconds": 7.0,
+  "trim_end_seconds": 1.0,
+  "frame_count": 3036,
+  "sample_seconds": 22.073039416999976,
+  "average_fps": 137.4980555538053,
+  "one_percent_low_fps": 59.157619429534634,
+  "p50_ms": 6.65425,
+  "p95_ms": 13.6265,
+  "p99_ms": 14.85985649999999,
+  "max_ms": 22.937,
+  "frames_over_25_ms": 0,
+  "frames_over_33_3_ms": 0,
+  "frames_over_50_ms": 0,
+  "profile": "dxmt-headroom180",
+  "backend": "dxmt",
+  "render_resolution": [
+    3456,
+    2234
+  ],
+  "ultra_verified": true,
+  "acceptance_passed": false,
+  "metric_limitation": "Unpaced compositor flips can exceed panel refresh; these are not complete displayed frames. Pacing and1% low fail regardless."
+}

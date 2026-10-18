@@ -8,7 +8,7 @@ guard CommandLine.arguments.count >= 3, let pid = Int32(CommandLine.arguments[1]
       let app = NSRunningApplication(processIdentifier: pid),
       app.localizedName == "HeroesOfTheStorm_x64.exe" else { fatalError("Expected the Wine HotS PID") }
 let command = CommandLine.arguments[2]
-guard ["camera", "center", "follow", "hold-center", "play-for", "seek", "hud", "timeline", "pause", "faster", "slower", "restart", "back", "next"].contains(command) else { fatalError("Unsupported replay command") }
+guard ["activate", "camera", "center", "follow", "hold-center", "play-for", "seek", "hud", "timeline", "pause", "faster", "slower", "restart", "back", "next"].contains(command) else { fatalError("Unsupported replay command") }
 guard CGPreflightPostEventAccess() else { fatalError("Event posting is unavailable; no input sent") }
 let windows = CGWindowListCopyWindowInfo([.optionAll, .excludeDesktopElements], kCGNullWindowID) as? [[String: Any]] ?? []
 guard let window = windows.first(where: {
