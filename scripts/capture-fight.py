@@ -30,6 +30,12 @@ result=subprocess.run([str(base/'replay-control-native'),str(a.pid),'pause'],tex
 after=time.time()
 metadata={'pid':a.pid,'trace_pid':record.pid,'seconds':a.seconds,'camera':'held Space on original replay player' if a.hold_center else 'prepared camera','play_command_wall_before':before,'play_command_wall_after':after,'play_output':result.stdout.strip(),'ultra_config_matches':True,'requires_screenshot_resolution_verification':True,'acceptance_valid':False}
 (out/'capture.json').write_text(json.dumps(metadata,indent=2)+'\n');print(out,flush=True)
+while record.poll() is None and 'Reached specified time limit' not in (out/'xctrace.log').read_text():
+    time.sleep(.2)
+if 'Reached specified time limit' in (out/'xctrace.log').read_text():
+    subprocess.run([str(base/'replay-control-native'),str(a.pid),'pause'],stdout=log,stderr=log,check=True)
+    metadata['paused_after_capture_wall']=time.time()
+    (out/'capture.json').write_text(json.dumps(metadata,indent=2)+'\n')
 record.wait();focus.wait();log.close()
 if record.returncode:raise SystemExit(record.returncode)
 subprocess.run(['xcrun','xctrace','export','--input',str(out/'metal.trace'),'--xpath',f'/trace-toc/run/data/table[@schema="{a.schema}"]','--output',str(out/'presented.xml')],check=True)

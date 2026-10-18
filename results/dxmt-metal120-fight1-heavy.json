@@ -1,0 +1,29 @@
+{
+  "stage": "steady-replay-after-warm-seek",
+  "metric": "Deduplicated Metal actual-presentation timestamps; verified timebase correction",
+  "schema": "ca-client-presented-handler",
+  "trim_start_seconds": 7.0,
+  "trim_end_seconds": 1.0,
+  "frame_count": 2716,
+  "sample_seconds": 22.929124666080284,
+  "average_fps": 118.40835790894415,
+  "one_percent_low_fps": 59.46910041514637,
+  "p50_ms": 8.33333299200058,
+  "p95_ms": 8.333375040000915,
+  "p99_ms": 16.66662499200058,
+  "max_ms": 20.83325001599884,
+  "frames_over_25_ms": 0,
+  "frames_over_33_3_ms": 0,
+  "frames_over_50_ms": 0,
+  "profile": "dxmt-metal120",
+  "backend": "dxmt",
+  "render_resolution": [
+    3456,
+    2234
+  ],
+  "ultra_verified": true,
+  "foreground_all_samples": true,
+  "camera": "held Space on original replay player",
+  "capture_overhead_resolved": false,
+  "acceptance_passed": false
+}
