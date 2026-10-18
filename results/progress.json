@@ -1,8 +1,8 @@
 {
   "status": "in_progress",
   "target_verified": false,
-  "step": "Validated three native Ultra HUD-hidden fight sections",
-  "current_issue": "One of three sections passed all gates; two had2\u20133 missed refreshes and failed the strict1% low. Testing render headroom180 and mouse-lag reduction disabled.",
+  "step": "Comparing synchronization and pacing at native Ultra",
+  "current_issue": "Metal-paced120 passed one fight but missed2\u20133 refreshes in two others. Unpaced180 was rejected; the VSync120 three-fight repeat is running.",
   "previous_samples_valid_for_target": false,
   "render_resolution_verified": [
     3456,
