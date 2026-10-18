@@ -7,3 +7,4 @@ GetClientRect
 ClientToScreen
 SetCursorPos
 mouse_event
+SetWindowPos

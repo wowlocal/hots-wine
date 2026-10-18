@@ -10,6 +10,7 @@ __declspec(dllimport) int __stdcall GetClientRect(void*,RECT*);
 __declspec(dllimport) int __stdcall ClientToScreen(void*,POINT*);
 __declspec(dllimport) int __stdcall SetCursorPos(int,int);
 __declspec(dllimport) void __stdcall mouse_event(DWORD,DWORD,DWORD,DWORD,ULONG_PTR);
+__declspec(dllimport) int __stdcall SetWindowPos(void*,void*,int,int,int,int,unsigned int);
 __declspec(dllimport) void __stdcall Sleep(DWORD);
 __declspec(dllimport) char* __stdcall GetCommandLineA(void);
 __declspec(dllimport) void __stdcall ExitProcess(unsigned int);
@@ -20,6 +21,10 @@ void mainCRTStartup(void) {
  Sleep(250);
  char* line=GetCommandLineA();
  char* keys=0;
+ // Explicit native-resolution borderless client; needed with an older live Wine desktop.
+ for(char* p=line;*p;p++) if(p[0]==' ' && p[1]=='n' && p[2]=='a' && p[3]=='t' && p[4]=='i' && p[5]=='v' && p[6]=='e' && p[7]=='=' && p[8]=='1') {
+  ExitProcess(SetWindowPos(window,0,0,0,3456,2234,0x24) ? 0 : 5);
+ }
  // Seek on the visible standard replay timeline; value is thousandths of duration.
  // Coordinates are derived from the inspected 1728x1117 client screenshot.
  for(char* p=line;*p;p++) if(p[0]==' ' && p[1]=='s' && p[2]=='e' && p[3]=='e' && p[4]=='k' && p[5]=='=') {
