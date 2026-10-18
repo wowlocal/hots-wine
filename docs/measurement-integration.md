@@ -13,3 +13,7 @@ A temporary cached-loader experiment was rolled back; its contents were verified
 `focus-monitor.swift` activates the selected game PID and samples the frontmost PID every250ms. A sample with lost foreground focus must be rejected or explicitly labelled invalid.
 
 Reference: [Apple presentedTime](https://developer.apple.com/documentation/metal/mtldrawable/presentedtime) and [presentation handlers](https://developer.apple.com/documentation/metal/mtldrawable/addpresentedhandler(_:)).
+
+The Instruments `at-time` field can recover actual presentation times after correcting its extra mach timebase conversion (125/3 on this Mac). In a simultaneous capture,1765 display-swap timestamps aligned with the deduplicated status2 presentation series; the maximum aligned residual was83ns. Three boundary events differed between the two series. Callback arrival times are still unsuitable. This correction has only been qualified on this Mac and must be checked again on other hardware or Instruments versions.
+
+`scripts/display-timing.swift` is a read-only ScreenCaptureKit diagnostic. It saves timing metadata from a64px display stream, without saving image frames. Its compositor timestamps have not been qualified as actual game display swaps, so its FPS must not be used for acceptance.

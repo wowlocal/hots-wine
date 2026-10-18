@@ -14,6 +14,9 @@ parser.add_argument('--stage', required=True)
 parser.add_argument('--output', type=Path)
 parser.add_argument('--trim-start', type=float, default=0)
 parser.add_argument('--trim-end', type=float, default=0)
+parser.add_argument('--actual-presentation-time', action='store_true',
+                    help='Use deduplicated status2 at-time values, corrected for the verified Instruments timebase conversion.')
+parser.add_argument('--timebase', default='125/3', help='mach timebase numer/denom from this trace; required for the corrected at-time mode')
 args = parser.parse_args()
 root = ET.parse(args.xml).getroot()
 definitions = {e.attrib['id']: e for e in root.iter() if 'id' in e.attrib}
@@ -46,9 +49,20 @@ for row in root.iter('row'):
     owner = row[9] if display_swaps else row[-1]
     if pid(owner) != args.pid:
         continue
-    timestamp = resolve(row[0])
-    frames.append(int(timestamp.text))
+    if args.actual_presentation_time:
+        if display_swaps:
+            raise SystemExit('Actual presentation mode requires ca-client-presented-handler XML.')
+        if resolve(row[2]).text != '2':
+            continue
+        frames.append(int(resolve(row[3]).text))
+    else:
+        timestamp = resolve(row[0])
+        frames.append(int(timestamp.text))
 frames = sorted(set(frames))
+if args.actual_presentation_time and frames:
+    numer, denom = map(int, args.timebase.split('/'))
+    origin = frames[0]
+    frames = [(t-origin)*denom/numer for t in frames]
 if frames:
     first, last = frames[0], frames[-1]
     frames = [t for t in frames if first + args.trim_start * 1e9 <= t <= last - args.trim_end * 1e9]
@@ -68,6 +82,7 @@ def percentile(p):
 worst = ordered[-max(1, math.ceil(len(ordered) * .01)):]
 result = dict(pid=args.pid, stage=args.stage, source=str(args.xml),
               metric=('Displayed surface swap timestamps' if display_swaps else
+                      'Deduplicated Metal actual-presentation timestamps; verified timebase correction' if args.actual_presentation_time else
                       'CAMetalDrawable callback timestamps; includes coalesced callbacks, not display FPS'),
               schema=schema, trim_start_seconds=args.trim_start, trim_end_seconds=args.trim_end,
               frame_count=len(frames), sample_seconds=sum(intervals) / 1000,
