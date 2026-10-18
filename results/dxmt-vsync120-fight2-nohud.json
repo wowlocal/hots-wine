@@ -1,0 +1,33 @@
+{
+  "stage": "steady-replay-after-warm-seek",
+  "metric": "Global compositor surface swaps; full-display foreground attribution must be verified",
+  "schema": "display-surface-swap",
+  "trim_start_seconds": 7.0,
+  "trim_end_seconds": 1.0,
+  "frame_count": 2684,
+  "sample_seconds": 22.358318332999456,
+  "average_fps": 120.00008050873832,
+  "one_percent_low_fps": 119.99928907087853,
+  "p50_ms": 8.333333,
+  "p95_ms": 8.333375,
+  "p99_ms": 8.333375,
+  "max_ms": 8.333417,
+  "frames_over_25_ms": 0,
+  "frames_over_33_3_ms": 0,
+  "frames_over_50_ms": 0,
+  "profile": "dxmt-vsync120",
+  "backend": "dxmt",
+  "render_resolution": [
+    3456,
+    2234
+  ],
+  "ultra_verified": true,
+  "foreground_all_samples": true,
+  "foreground_samples": 198,
+  "camera": "held Space on original replay player",
+  "replay_clock_prepared": "13:21",
+  "hud_visible": false,
+  "acceptance_passed": true,
+  "overall_goal_verified": false,
+  "measurement_attribution": "Raw swaps calibrated in an earlier simultaneous reference; native full-display foreground verified. Live HUD-hidden cross-check pending."
+}
