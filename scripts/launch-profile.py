@@ -30,6 +30,10 @@ def main():
     p=argparse.ArgumentParser();p.add_argument('profile',choices=profiles);p.add_argument('--replace-game',action='store_true');p.add_argument('--prepare-replay',action='store_true');p.add_argument('--hud',action='store_true');p.add_argument('--game',action='store_true',help='Open the normal game instead of the benchmark replay')
     a=p.parse_args();profile=profiles[a.profile]
     if a.game and a.prepare_replay:p.error('--game cannot prepare a replay')
+    if 'runtime_overlay' in profile:
+        overlay=BASE/'runtimes'/profile['runtime_overlay'];runtime=overlay/'lib/dxmt'
+        required=['x86_64-windows/d3d11.dll','x86_64-windows/dxgi.dll','x86_64-windows/winemetal.dll','x86_64-unix/winemetal.so']
+        if not all((runtime/name).is_file()for name in required):raise SystemExit('Prepare the pinned private runtime overlay before launching this profile')
     running=pids()
     if running and not a.replace_game:raise SystemExit('Game is running. Use --replace-game only for an authorized benchmark restart.')
     for pid in running:os.kill(pid,signal.SIGTERM)
@@ -57,6 +61,9 @@ def main():
         replay=next(DOCS.rglob('*16.02.25 Cursed Hollow.StormReplay'))
         replay_args=['C:\\'+str(replay.relative_to(BOTTLE/'drive_c')).replace('/','\\')]
     env={'CX_GRAPHICS_BACKEND':profile['backend'],'WINEMSYNC':str(profile['msync']),'WINE_SIMULATE_WRITECOPY':'1','MTL_HUD_ENABLED':'1' if a.hud else '0',**profile['env']}
+    if 'runtime_overlay' in profile:
+        cx=Path(WINE).parents[1]
+        env.update(CX_ROOT=str(overlay),WINEDLLPATH=':'.join(str(x)for x in [runtime/'x86_64-windows',runtime,cx/'lib/wine/x86_64-windows',cx/'lib/wine/i386-windows',cx/'lib/wine']),WINEDLLOVERRIDES='d3d11,dxgi,d3d10core,winemetal=b',DXMT_LOG_LEVEL='error')
     log=(out/'wine.log').open('w')
     command=[WINE,'--bottle','Heroes of the Storm','--no-gui','--debugmsg','-all','--no-wait','--env',shlex.join(f'{k}={v}' for k,v in env.items()),'--cx-app',r'C:\Program Files (x86)\Heroes of the Storm\Support64\HeroesSwitcher_x64.exe',*replay_args,'-sso=1','-launch','-uid','heroes']
     subprocess.Popen(command,stdout=log,stderr=log,start_new_session=True)

@@ -30,6 +30,8 @@ This repository contains our scripts, configuration targets, and sanitized measu
 
 `scripts/play-game.py PROFILE` additionally sets a temporary native1× display mode and disables Wine Retina conversion for the game's startup. It retains a private per-launch display/registry backup and restores both when the game exits. Its process-exit monitor uses macOS kernel notifications, without a polling loop. This wrapper is pending a live normal-game launch/exit check.
 
+The optional `dxmt-v080-metal120` candidate uses an isolated, pinned [upstream DXMT0.80 release](https://github.com/3Shain/dxmt/releases/tag/v0.80). `setup-dxmt-overlay.py` verifies a locally downloaded archive and stages private runtime links; it never edits the installed application. A D3D11 device probe confirmed all four upstream runtime modules loaded successfully. Full-game performance is still pending. CrossOver's compatibility database prepends its selected backend path, so `WINEDLLPATH` alone did not select the new runtime; the private `CX_ROOT` overlay did.
+
 ## Measurement protocol
 
 1. Verify render-target dimensions, preset definitions, and effective graphics variables.
