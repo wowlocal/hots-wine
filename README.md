@@ -12,6 +12,15 @@ Native 3456 × 2234 rendering is now confirmed by the Metal HUD. The replay help
 
 DXVK's tested native VSync profile is rejected: it fails the frame-time target and corrupts the spectator hero-portrait bar. The normal-game launcher refuses that known-bad profile. A paused scene between captures is deliberate while Instruments processes its trace, which can take several minutes; it must not be mistaken for a game hang. Visual correctness is a separate prerequisite for accepting performance results.
 
+| Tested configuration | Average FPS | 1% low FPS | p99 (ms) | Worst frame (ms) | Outcome |
+|---|---:|---:|---:|---:|---|
+| DXMT Metal120, three fights | 119.87–120.00 | 108.00–120.00 | 8.33 | 16.67 | One of three passes |
+| DXMT VSync120, three fights | 119.78–120.00 | 101.25–120.00 | 8.33 | 16.67 | One of three passes |
+| D3DMetal VSync, warmed first fight | 117.63 | 60.00 | 16.67 | 16.67 | Fails |
+| DXVK VSync, warmed first fight | 119.71 | 96.72 | 8.33 | 20.83 | Fails; portrait corruption |
+
+All rows use native3456×2234 and the engine-generated Ultra preset. D3DMetal/DXVK used temporary native1× host scaling; the DXMT rows used the original Retina desktop geometry. These are tested configuration bundles, not an isolated measurement of one backend variable. Exact summaries are under `results/`; DXMT0.80 performance is pending. See [visual validation](docs/visual-validation.md).
+
 ## Local layout
 
 - Bottle: `~/Library/Application Support/CrossOver/Bottles/Heroes of the Storm`
