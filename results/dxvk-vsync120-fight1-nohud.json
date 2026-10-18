@@ -33,5 +33,8 @@
   "acceptance_passed": false,
   "overall_goal_verified": false,
   "measurement_attribution": "Raw display swaps with native full-display viewport and foreground verification; DXVK-specific simultaneous ownership cross-check pending.",
-  "warmup": "Accelerated replay traversal through15:33; repeat after real-time fight pending"
+  "warmup": "Accelerated replay traversal through15:33; repeat after real-time fight pending",
+  "visual_correctness_passed": false,
+  "visual_issue": "Missing hero portraits in spectator top bar; world visible through panels. Earlier DXMT capture at same clock renders portraits correctly.",
+  "profile_rejected": true
 }

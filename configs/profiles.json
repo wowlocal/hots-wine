@@ -92,7 +92,8 @@
     },
     "last_device_id": 452985841,
     "vsync": true,
-    "reduce_mouse_lag": false
+    "reduce_mouse_lag": false,
+    "rejected_for_play": "Hero portrait corruption in native Ultra replay; profile rejected"
   },
   "dxmt-v080-metal120": {
     "backend": "dxmt",

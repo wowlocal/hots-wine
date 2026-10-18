@@ -1,8 +1,8 @@
 {
   "status": "in_progress",
   "target_verified": false,
-  "step": "D3DMetal native warm comparison complete; testing DXVK",
-  "current_issue": "D3DMetal repeats average117.4\u2013117.6FPS with1% lows56\u201360FPS. DXMT remains the leading measured backend; strict three-fight target has not passed.",
+  "step": "DXVK rejected for portrait corruption; original display restored",
+  "current_issue": "User observed frozen gameplay and corrupt top bar. Freeze was deliberate replay pause during trace processing; portrait corruption was confirmed against DXMT reference. DXVK rejected. Game stopped, original display scaling and RetinaMode restored; Battle.net preserved.",
   "previous_samples_valid_for_target": false,
   "render_resolution_verified": [
     3456,
@@ -11,7 +11,7 @@
   "resolution_evidence": "Metal HUD reports 3456x2234; CGWindow bounds cover the 1728x1117-point Retina display. Full game viewport visible.",
   "battle_net_session_preserved": true,
   "ultra_preset_verified": true,
-  "effective_backend": "dxmt",
+  "effective_backend": "none: game stopped",
   "adapter_metadata_override": {
     "vendor": "1002",
     "device": "6810"

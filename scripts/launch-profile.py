@@ -30,6 +30,7 @@ def main():
     p=argparse.ArgumentParser();p.add_argument('profile',choices=profiles);p.add_argument('--replace-game',action='store_true');p.add_argument('--prepare-replay',action='store_true');p.add_argument('--hud',action='store_true');p.add_argument('--game',action='store_true',help='Open the normal game instead of the benchmark replay')
     a=p.parse_args();profile=profiles[a.profile]
     if a.game and a.prepare_replay:p.error('--game cannot prepare a replay')
+    if a.game and profile.get('rejected_for_play'):raise SystemExit(profile['rejected_for_play'])
     if 'runtime_overlay' in profile:
         overlay=BASE/'runtimes'/profile['runtime_overlay'];runtime=overlay/'lib/dxmt'
         required=['x86_64-windows/d3d11.dll','x86_64-windows/dxgi.dll','x86_64-windows/winemetal.dll','x86_64-unix/winemetal.so']

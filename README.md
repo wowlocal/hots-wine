@@ -10,6 +10,8 @@ The Windows game and Battle.net work in a dedicated CrossOver 26.3 bottle. The t
 
 Native 3456 × 2234 rendering is now confirmed by the Metal HUD. The replay helper corrects the cropped window caused by enabling Retina reporting while the authenticated Wine desktop remains open. The game-generated Ultra preset is retained. Target performance is still being verified.
 
+DXVK's tested native VSync profile is rejected: it fails the frame-time target and corrupts the spectator hero-portrait bar. The normal-game launcher refuses that known-bad profile. A paused scene between captures is deliberate while Instruments processes its trace, which can take several minutes; it must not be mistaken for a game hang. Visual correctness is a separate prerequisite for accepting performance results.
+
 ## Local layout
 
 - Bottle: `~/Library/Application Support/CrossOver/Bottles/Heroes of the Storm`

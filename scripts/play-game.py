@@ -14,7 +14,9 @@ KEY=r'HKCU\Software\Wine\Mac Driver'
 def reg(*args,check=True):
     return subprocess.run([launch.WINE,'--bottle','Heroes of the Storm','--no-gui','--debugmsg','-all','--cx-app','reg',*args],capture_output=True,text=True,check=check)
 def main():
-    p=argparse.ArgumentParser();p.add_argument('profile',choices=json.loads((ROOT/'configs/profiles.json').read_text()));a=p.parse_args()
+    profiles=json.loads((ROOT/'configs/profiles.json').read_text())
+    p=argparse.ArgumentParser();p.add_argument('profile',choices=profiles);a=p.parse_args()
+    if profiles[a.profile].get('rejected_for_play'):raise SystemExit(profiles[a.profile]['rejected_for_play'])
     running=launch.pids()
     if running:
         subprocess.run([str(BASE/'replay-control-native'),str(running[0]),'activate'],check=True)

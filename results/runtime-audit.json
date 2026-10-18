@@ -12,5 +12,6 @@
     "dxgi.dll",
     "winemetal.dll",
     "winemetal.so"
-  ]
+  ],
+  "github_published_digest_verified": true
 }
