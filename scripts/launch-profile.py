@@ -46,7 +46,10 @@ def main():
     values.update(frameratecap=str(profile['game_cap']),lastDeviceId=str(profile.get('last_device_id',26640)),enablefunctionkeys=function_keys if a.game else 'true')
     values['displaymode']=str(profile.get('display_mode',1))
     values.update(windowwidth='3456',windowheight='2234',windowx='0',windowy='0')
+    # An absent key in the original baseline meant the engine default. Do not
+    # inherit an explicit value left by a different experimental profile.
     if 'reduce_mouse_lag' in profile:values['reducemouselagenabled']='true' if profile['reduce_mouse_lag'] else 'false'
+    else:values.pop('reducemouselagenabled',None)
     values['vsync']='true' if profile.get('vsync',False) else 'false'
     variables.write_text(''.join(f'{k}={v}\n' for k,v in sorted(values.items())))
     replay_args=[]
