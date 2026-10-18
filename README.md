@@ -8,7 +8,7 @@ Target: **3456 × 2234, Ultra, stable 120 FPS**, with native rendering and no ge
 
 The Windows game and Battle.net work in a dedicated CrossOver 26.3 bottle. The target has **not** passed validation. Earlier reduced-quality, half-resolution and static-base samples do not establish target performance.
 
-Native 3456 × 2234 rendering is now confirmed by the Metal HUD. The replay helper corrects the cropped window caused by enabling Retina reporting while the authenticated Wine desktop remains open. Ultra preset definitions and target performance are still being verified.
+Native 3456 × 2234 rendering is now confirmed by the Metal HUD. The replay helper corrects the cropped window caused by enabling Retina reporting while the authenticated Wine desktop remains open. The game-generated Ultra preset is retained. Target performance is still being verified.
 
 ## Local layout
 

@@ -10,3 +10,7 @@ mouse_event
 SetWindowPos
 EnumDisplaySettingsW
 ChangeDisplaySettingsW
+SendMessageA
+GetSystemMetrics
+SetProcessDPIAware
+ClipCursor

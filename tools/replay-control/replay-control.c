@@ -13,16 +13,38 @@ __declspec(dllimport) void __stdcall mouse_event(DWORD,DWORD,DWORD,DWORD,ULONG_P
 __declspec(dllimport) int __stdcall SetWindowPos(void*,void*,int,int,int,int,unsigned int);
 __declspec(dllimport) int __stdcall EnumDisplaySettingsW(const unsigned short*,DWORD,void*);
 __declspec(dllimport) long __stdcall ChangeDisplaySettingsW(void*,DWORD);
+__declspec(dllimport) long long __stdcall SendMessageA(void*,unsigned int,ULONG_PTR,long long);
+__declspec(dllimport) int __stdcall GetSystemMetrics(int);
+__declspec(dllimport) void* __stdcall GetStdHandle(DWORD);
+__declspec(dllimport) int __stdcall WriteFile(void*,const void*,DWORD,DWORD*,void*);
+__declspec(dllimport) int __stdcall SetProcessDPIAware(void);
+__declspec(dllimport) int __stdcall ClipCursor(const RECT*);
 __declspec(dllimport) void __stdcall Sleep(DWORD);
 __declspec(dllimport) char* __stdcall GetCommandLineA(void);
 __declspec(dllimport) void __stdcall ExitProcess(unsigned int);
 void mainCRTStartup(void) {
+ SetProcessDPIAware();
  void* window=FindWindowA(0,"Heroes of the Storm");
  if(!window) ExitProcess(2);
  SetForegroundWindow(window);
  Sleep(250);
  char* line=GetCommandLineA();
  char* keys=0;
+ for(char* p=line;*p;p++) if(p[0]==' ' && p[1]=='u' && p[2]=='n' && p[3]=='c' && p[4]=='l' && p[5]=='i' && p[6]=='p') ExitProcess(ClipCursor(0)?0:8);
+ for(char* p=line;*p;p++) if(p[0]==' ' && p[1]=='q' && p[2]=='u' && p[3]=='e' && p[4]=='r' && p[5]=='y') {
+  RECT r;GetClientRect(window,&r);int values[4]={r.right-r.left,r.bottom-r.top,GetSystemMetrics(0),GetSystemMetrics(1)};
+  char output[128];int length=0;
+  for(int i=0;i<4;i++) {char n[16];int c=0,v=values[i];do{n[c++]='0'+v%10;v/=10;}while(v);while(c)output[length++]=n[--c];output[length++]=i==3?'\n':' ';}
+  DWORD written;WriteFile(GetStdHandle((DWORD)-11),output,length,&written,0);ExitProcess(0);
+ }
+ for(char* p=line;*p;p++) if(p[0]==' ' && p[1]=='j' && p[2]=='u' && p[3]=='m' && p[4]=='p' && p[5]=='=') {
+  int n=0;for(char* q=p+6;*q>='0' && *q<='9';q++)n=n*10+(*q-'0');if(n>950)ExitProcess(4);
+  int x=3456*(785000+195*n)/1000000,y=2234*162/1000;
+  long long point=(unsigned int)((y<<16)|(x&0xffff));
+  SendMessageA(window,0x200,0,point);Sleep(150);
+  SendMessageA(window,0x201,1,point);Sleep(100);
+  SendMessageA(window,0x202,0,point);ExitProcess(0);
+ }
  for(char* p=line;*p;p++) if(p[0]==' ' && p[1]=='d' && p[2]=='i' && p[3]=='s' && p[4]=='p' && p[5]=='l' && p[6]=='a' && p[7]=='y' && p[8]=='=' && p[9]=='1') {
   volatile unsigned char mode[220];for(int i=0;i<220;i++) mode[i]=0;
   *(unsigned short*)(mode+68)=220;

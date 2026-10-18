@@ -3,3 +3,5 @@ EXPORTS
 Sleep
 GetCommandLineA
 ExitProcess
+GetStdHandle
+WriteFile
