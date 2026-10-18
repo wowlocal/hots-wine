@@ -1,8 +1,8 @@
 {
   "status": "in_progress",
   "target_verified": false,
-  "step": "VSync120 three-fight audit complete; qualify live frame attribution",
-  "current_issue": "VSync120 passed only fight2; fight1 had two and fight3 five missed refreshes. No profile passes all three strict1% lows.",
+  "step": "D3DMetal native warm comparison complete; testing DXVK",
+  "current_issue": "D3DMetal repeats average117.4\u2013117.6FPS with1% lows56\u201360FPS. DXMT remains the leading measured backend; strict three-fight target has not passed.",
   "previous_samples_valid_for_target": false,
   "render_resolution_verified": [
     3456,
