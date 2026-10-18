@@ -59,17 +59,17 @@ def main():
                 if not resized:
                     helper('display=1');helper('native=1');resized=True
                 state=json.loads(subprocess.check_output([str(BASE/'inspect-replay'),str(game[0]),str(out/'loaded.png')],text=True))
-                if state['clock'] and not any('Seeking' in s for s in state['state']):break
+                if any(s not in ('00:00','-00:00') for s in state['clock']) and not any('Seeking' in s for s in state['state']):break
             except (subprocess.CalledProcessError,json.JSONDecodeError):pass
             time.sleep(2)
         else:raise SystemExit('Replay clock was not detected; do not send preparation keys while loading.')
         helper('display=1');helper('native=1')
-        subprocess.run([str(BASE/'replay-control-native'),str(game[0]),'restart'],check=True)
+        subprocess.run([str(BASE/'replay-control-native'),str(game[0]),'center'],check=True)
         time.sleep(2)
         def clock():
             return json.loads(subprocess.check_output([str(BASE/'inspect-replay'),str(game[0]),str(out/'prepared.png')],text=True))['clock']
         first=clock();time.sleep(2);second=clock()
         if first!=second:subprocess.run([str(BASE/'replay-control-native'),str(game[0]),'pause'],check=True)
-        print('Replay restarted and paused; verify viewport and effective settings before measuring.',flush=True)
+        print('Loaded replay centered and paused; verify viewport and effective settings before measuring.',flush=True)
 
 if __name__=='__main__':main()

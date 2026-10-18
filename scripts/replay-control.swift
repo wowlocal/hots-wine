@@ -63,7 +63,7 @@ if command == "restart" { chord(59, .maskControl, 14) }
 if command == "back" || command == "next" {
     let count = CommandLine.arguments.count == 4 ? Int(CommandLine.arguments[3]) ?? 0 : 1
     guard count >= 1 && count <= 100 else { fatalError("Skip count must be1...100") }
-    for _ in 0..<count { key(command == "back" ? 11 : 3); Thread.sleep(forTimeInterval:0.2) }
+    for _ in 0..<count { key(command == "back" ? 11 : 3); Thread.sleep(forTimeInterval:0.8) }
 }
 if command == "pause" { key(35) }
 if command == "play-for" {
