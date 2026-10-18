@@ -11,5 +11,6 @@ __pycache__/
 *.obj
 *.lib
 *.dll
+*.dylib
 *.zip
 *.log

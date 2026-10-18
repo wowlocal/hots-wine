@@ -39,9 +39,17 @@ void mainCRTStartup(void) {
  if(!keys) ExitProcess(3);
  for(char* p=keys;*p && *p!=' ';p++) {
   unsigned char key=*p;
+  int control=0,shift=0;
+  if(key=='^') {control=1;key=*++p;if(!key) break;}
+  if(key=='~') key=13;
+  if(key==':') {key=0xba;shift=1;}
   if(key>='a' && key<='z') key-=32;
-  if(!((key>='A' && key<='Z') || (key>='0' && key<='9'))) continue;
+  if(!((key>='A' && key<='Z') || (key>='0' && key<='9') || key==13 || key==0xba)) continue;
+  if(control) keybd_event(0x11,0,0,0);
+  if(shift) keybd_event(0x10,0,0,0);
   keybd_event(key,0,0,0);Sleep(60);keybd_event(key,0,2,0);Sleep(200);
+  if(shift) keybd_event(0x10,0,2,0);
+  if(control) keybd_event(0x11,0,2,0);
  }
  ExitProcess(0);
 }
