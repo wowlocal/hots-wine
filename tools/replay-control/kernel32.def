@@ -5,3 +5,4 @@ GetCommandLineA
 ExitProcess
 GetStdHandle
 WriteFile
+GetModuleFileNameA

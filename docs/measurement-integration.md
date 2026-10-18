@@ -21,3 +21,5 @@ The Instruments `at-time` field can recover actual presentation times after corr
 A lighter Frame Lifetimes capture exports the raw `display-surface-swap` schema. In the simultaneous reference trace, all1765 game-attributed display-swap timestamps matched raw swaps exactly; only the two capture boundaries differed. The raw schema has no PID ownership. It is therefore only usable with continuous foreground verification and a separately verified game viewport covering the entire display. The analyzer rejects missing or lost foreground logs. Attribution on another desktop layout or with other overlays must be requalified.
 
 `inspect-replay.swift` provides read-only clock/seek-state OCR outside measurement intervals. `hold-center` holds Space during a sample so the original replay player's camera path can be repeated across backends.
+
+A temporary AppInit DPI initializer experiment did not produce a qualified load or viewport fix. Its registry values were removed. It is not part of the working launch configuration. The native display-mode helper stores the original mode privately and can restore it with `display-mode restore`; changes use session scope.

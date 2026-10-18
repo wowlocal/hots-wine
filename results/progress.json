@@ -1,8 +1,8 @@
 {
   "status": "in_progress",
   "target_verified": false,
-  "step": "Metal pacing reached119.15FPS average and8.33ms p99 in a warm fight",
-  "current_issue": "1% low70.4FPS still fails; D3DMetal rendering dimensions must be corrected before comparison.",
+  "step": "Testing native1x host geometry to eliminate mixed Wine DPI",
+  "current_issue": "D3DMetal and DXVK viewport geometry still unqualified. Native1x host mode120Hz and Wine RetinaMode=N are under test; original host mode is backed up.",
   "previous_samples_valid_for_target": false,
   "render_resolution_verified": [
     3456,
@@ -16,7 +16,18 @@
     "vendor": "1002",
     "device": "6810"
   },
-  "retina_mode": true,
+  "retina_mode": false,
   "registry_dpi": 96,
-  "display_mode_refresh": "Explicit Wine ChangeDisplaySettingsW(3456x2234) and client resize; Metal HUD confirms3456x2234."
+  "display_mode_refresh": "Explicit Wine ChangeDisplaySettingsW(3456x2234) and client resize; Metal HUD confirms3456x2234.",
+  "host_test_mode": {
+    "points": [
+      3456,
+      2234
+    ],
+    "pixels": [
+      3456,
+      2234
+    ],
+    "refresh_rate": 120
+  }
 }

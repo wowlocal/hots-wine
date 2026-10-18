@@ -18,12 +18,13 @@ __declspec(dllimport) int __stdcall GetSystemMetrics(int);
 __declspec(dllimport) void* __stdcall GetStdHandle(DWORD);
 __declspec(dllimport) int __stdcall WriteFile(void*,const void*,DWORD,DWORD*,void*);
 __declspec(dllimport) int __stdcall SetProcessDPIAware(void);
+__declspec(dllimport) void* __stdcall SetThreadDpiAwarenessContext(void*);
 __declspec(dllimport) int __stdcall ClipCursor(const RECT*);
 __declspec(dllimport) void __stdcall Sleep(DWORD);
 __declspec(dllimport) char* __stdcall GetCommandLineA(void);
 __declspec(dllimport) void __stdcall ExitProcess(unsigned int);
 void mainCRTStartup(void) {
- SetProcessDPIAware();
+ SetThreadDpiAwarenessContext((void*)-4); // Physical per-monitor coordinates, independent of a live desktop's cached DPI.
  void* window=FindWindowA(0,"Heroes of the Storm");
  if(!window) ExitProcess(2);
  SetForegroundWindow(window);
@@ -56,6 +57,7 @@ void mainCRTStartup(void) {
  }
  // Explicit native-resolution borderless client; needed with an older live Wine desktop.
  for(char* p=line;*p;p++) if(p[0]==' ' && p[1]=='n' && p[2]=='a' && p[3]=='t' && p[4]=='i' && p[5]=='v' && p[6]=='e' && p[7]=='=' && p[8]=='1') {
+  SetWindowPos(window,0,0,0,3455,2233,0x24);Sleep(100);
   ExitProcess(SetWindowPos(window,0,0,0,3456,2234,0x24) ? 0 : 5);
  }
  // Seek on the visible standard replay timeline; value is thousandths of duration.
