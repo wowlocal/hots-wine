@@ -26,6 +26,8 @@ This repository contains our scripts, configuration targets, and sanitized measu
 
 `scripts/benchmark-replay.py` is an early launch/capture helper. It does not yet enforce Ultra, native resolution, foreground logging, or the full acceptance protocol. Its output alone cannot prove success.
 
+`scripts/launch-profile.py PROFILE --game` opens the normal game through its Switcher using the existing session; omitting `--game` opens the local benchmark replay. The normal-game path is pending live verification. It preserves the current function-key preference. Restart operations now verify the game's working directory belongs to this bottle and accept updated game build numbers. They never stop Battle.net or wineserver.
+
 ## Measurement protocol
 
 1. Verify render-target dimensions, preset definitions, and effective graphics variables.
