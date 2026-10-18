@@ -103,5 +103,15 @@
       "DXMT_CONFIG": "dxgi.customVendorId=1002;dxgi.customDeviceId=6810;d3d11.preferredMaxFrameRate=120;"
     },
     "runtime_overlay": "cx-dxmt-v0.80"
+  },
+  "dxmt-v080-metal120-lag-reduction-off": {
+    "backend": "dxmt",
+    "game_cap": 0,
+    "msync": 1,
+    "env": {
+      "DXMT_CONFIG": "dxgi.customVendorId=1002;dxgi.customDeviceId=6810;d3d11.preferredMaxFrameRate=120;"
+    },
+    "runtime_overlay": "cx-dxmt-v0.80",
+    "reduce_mouse_lag": false
   }
 }
