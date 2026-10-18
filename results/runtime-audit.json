@@ -1,0 +1,8 @@
+{
+  "crossover_dxmt_version": "v0.72-25-gf35d839",
+  "upstream_candidate": "v0.80",
+  "release": "https://github.com/3Shain/dxmt/releases/tag/v0.80",
+  "archive_sha256": "8f260e36b5739e68f3bad613381441385c4dc7b85b78ba8de653d5a6a264529d",
+  "status": "Downloaded into private runtime directory; not active or performance tested",
+  "installed_crossover_modified": false
+}
