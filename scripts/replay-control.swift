@@ -8,7 +8,7 @@ guard CommandLine.arguments.count >= 3, let pid = Int32(CommandLine.arguments[1]
       let app = NSRunningApplication(processIdentifier: pid),
       app.localizedName == "HeroesOfTheStorm_x64.exe" else { fatalError("Expected the Wine HotS PID") }
 let command = CommandLine.arguments[2]
-guard ["activate", "camera", "center", "follow", "hold-center", "play-for", "seek", "hud", "timeline", "pause", "faster", "slower", "restart", "back", "next"].contains(command) else { fatalError("Unsupported replay command") }
+guard ["activate", "camera", "center", "pointer-check", "follow", "hold-center", "play-for", "seek", "hud", "timeline", "pause", "faster", "slower", "restart", "back", "next"].contains(command) else { fatalError("Unsupported replay command") }
 guard CGPreflightPostEventAccess() else { fatalError("Event posting is unavailable; no input sent") }
 let windows = CGWindowListCopyWindowInfo([.optionAll, .excludeDesktopElements], kCGNullWindowID) as? [[String: Any]] ?? []
 guard let window = windows.first(where: {
@@ -34,7 +34,22 @@ func key(_ code: CGKeyCode, flags: CGEventFlags = []) {
     Thread.sleep(forTimeInterval: 0.2)
 }
 if command == "camera" { key(23); key(8) } // Observe player5, then follow player camera.
-if command == "center" { key(23); key(49) }
+func movePointer(_ point:CGPoint) {
+    checkFocus()
+    CGEvent(mouseEventSource:nil,mouseType:.mouseMoved,mouseCursorPosition:point,mouseButton:.left)?.post(tap:.cghidEventTap)
+    Thread.sleep(forTimeInterval:0.2)
+}
+if command == "center" {
+    movePointer(CGPoint(x:x+width*0.5,y:y+height*0.5))
+    key(23); key(49)
+}
+if command == "pointer-check" {
+    let target=CGPoint(x:x+width*0.9,y:y+height*0.5)
+    movePointer(target)
+    let actual=CGEvent(source:nil)!.location
+    print("Pointer target: \(target.x),\(target.y); actual: \(actual.x),\(actual.y)")
+    movePointer(CGPoint(x:x+width*0.5,y:y+height*0.5))
+}
 if command == "hold-center" {
     guard (4...5).contains(CommandLine.arguments.count), let seconds=Double(CommandLine.arguments[3]), seconds>0,seconds<=180 else {exit(2)}
     let stopFile=CommandLine.arguments.count==5 ? CommandLine.arguments[4] : nil

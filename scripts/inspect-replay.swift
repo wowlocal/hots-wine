@@ -12,5 +12,8 @@ func recognize(_ region:CGRect)->[String] {
     try? VNImageRequestHandler(url:URL(fileURLWithPath:path)).perform([request])
     return request.results?.compactMap{$0.topCandidates(1).first?.string} ?? []
 }
-let data:[String:Any] = ["wall":Date().timeIntervalSince1970,"window_id":id,"bounds":w[kCGWindowBounds as String]!,"clock":recognize(CGRect(x:0.47,y:0.855,width:0.06,height:0.03)),"state":recognize(CGRect(x:0.40,y:0.60,width:0.20,height:0.10))]
+let clock=recognize(CGRect(x:0.44,y:0.84,width:0.12,height:0.06)).filter {
+    $0.range(of:"^-?[0-9]+:[0-9]{2}$",options:.regularExpression) != nil
+}
+let data:[String:Any] = ["wall":Date().timeIntervalSince1970,"window_id":id,"bounds":w[kCGWindowBounds as String]!,"clock":clock,"state":recognize(CGRect(x:0.40,y:0.60,width:0.20,height:0.10))]
 print(String(data:try! JSONSerialization.data(withJSONObject:data,options:[.sortedKeys]),encoding:.utf8)!)
