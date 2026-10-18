@@ -1,0 +1,15 @@
+# Keep game, account, license, and diagnostic data local.
+.DS_Store
+artifacts/
+local/
+__pycache__/
+*.pyc
+*.trace/
+*.StormReplay
+*.reg
+*.exe
+*.obj
+*.lib
+*.dll
+*.zip
+*.log

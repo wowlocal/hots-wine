@@ -1,0 +1,21 @@
+{
+  "render_resolution": [
+    3456,
+    2234
+  ],
+  "quality": "Ultra",
+  "display_hz": 120,
+  "allow_upscaling": false,
+  "allow_dynamic_resolution": false,
+  "allow_frame_generation": false,
+  "minimum_average_fps": 119,
+  "minimum_one_percent_low_fps": 115,
+  "maximum_p99_ms": 9,
+  "maximum_steady_frame_ms": 25,
+  "required_fight_sections": 3,
+  "backend_candidates": [
+    "dxmt",
+    "d3dmetal",
+    "dxvk"
+  ]
+}

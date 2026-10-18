@@ -1,0 +1,7 @@
+{
+  "status": "in_progress",
+  "target_verified": false,
+  "step": "Initial tooling and target imported",
+  "current_issue": "Retina reporting enabled while preserving Battle.net; game window currently cropped. Ultra preset definitions are not yet verified.",
+  "previous_samples_valid_for_target": false
+}

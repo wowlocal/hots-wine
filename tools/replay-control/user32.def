@@ -1,0 +1,9 @@
+LIBRARY user32.dll
+EXPORTS
+FindWindowA
+SetForegroundWindow
+keybd_event
+GetClientRect
+ClientToScreen
+SetCursorPos
+mouse_event
