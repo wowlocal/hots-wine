@@ -20,5 +20,12 @@
   ],
   "game_ultra_verified": true,
   "initial_hero_portraits_verified": true,
-  "macos_original_scaling_preserved": true
+  "macos_original_scaling_preserved": true,
+  "wine_reported_screen": [
+    3456,
+    2234
+  ],
+  "pointer_range_verified": true,
+  "pointer_check": "Requested x1555.2 at90% of1728-point display; actual1555.19995. No half-screen clipping.",
+  "geometry_note": "Full pointer range observed after display-mode restoration and DXMT0.80 startup; cause not isolated between display-cache refresh and runtime change."
 }

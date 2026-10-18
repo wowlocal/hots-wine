@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Normal-game launcher with native display geometry and restoration on game exit.
+"""Normal-game launcher; optional display experiment restores on game exit.
 
 No replay controls or match joining. Battle.net and wineserver are left running.
 """
@@ -15,14 +15,14 @@ def reg(*args,check=True):
     return subprocess.run([launch.WINE,'--bottle','Heroes of the Storm','--no-gui','--debugmsg','-all','--cx-app','reg',*args],capture_output=True,text=True,check=check)
 def main():
     profiles=json.loads((ROOT/'configs/profiles.json').read_text())
-    p=argparse.ArgumentParser();p.add_argument('profile',choices=profiles);a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('profile',choices=profiles);p.add_argument('--native-display',action='store_true',help='Temporarily use native1x scaling for a backend comparison');a=p.parse_args()
     if profiles[a.profile].get('rejected_for_play'):raise SystemExit(profiles[a.profile]['rejected_for_play'])
     running=launch.pids()
     if running:
         subprocess.run([str(BASE/'replay-control-native'),str(running[0]),'activate'],check=True)
         print('Game already running; current graphics and display settings retained.')
         return
-    for name in ['display-mode','replay-control-native']:
+    for name in (['display-mode']if a.native_display else [])+['replay-control-native']:
         if not (BASE/name).is_file():raise SystemExit(f'Missing locally built helper: {name}')
     state=BASE/'launches'/(datetime.datetime.now().strftime('%Y%m%d-%H%M%S')+'-normal-display')
     state.mkdir(parents=True)
@@ -31,15 +31,17 @@ def main():
     if query.returncode and 'unable to find' not in query.stdout.lower():
         raise SystemExit('Could not read the original RetinaMode value; display unchanged.')
     original=match[1] if match else None
+    if not a.native_display and original!='Y':raise SystemExit('Normal launch requires this bottle configured with RetinaMode=Y')
     (state/'retina-before.json').write_text(json.dumps({'RetinaMode':original})+'\n')
     backup=state/'display-before.json'
     changed=False
     def interrupted(signum,frame):raise SystemExit(128+signum)
     for sig in [signal.SIGTERM,signal.SIGHUP,signal.SIGINT]:signal.signal(sig,interrupted)
     try:
-        subprocess.run([str(BASE/'display-mode'),'native1x',str(backup)],check=True)
-        changed=True
-        reg('add',KEY,'/v','RetinaMode','/t','REG_SZ','/d','N','/f')
+        if a.native_display:
+            subprocess.run([str(BASE/'display-mode'),'native1x',str(backup)],check=True)
+            changed=True
+            reg('add',KEY,'/v','RetinaMode','/t','REG_SZ','/d','N','/f')
         subprocess.run(['python3',str(ROOT/'scripts/launch-profile.py'),a.profile,'--game'],check=True)
         game=launch.pids()
         if len(game)!=1:raise RuntimeError('Expected one game process after launch')
@@ -47,7 +49,7 @@ def main():
         watcher=select.kqueue()
         try:watcher.control([select.kevent(pid,filter=select.KQ_FILTER_PROC,flags=select.KQ_EV_ADD,fflags=select.KQ_NOTE_EXIT)],0,0)
         except ProcessLookupError:return
-        print('Normal game started. Quit the game to restore macOS display scaling.',flush=True)
+        print('Normal game started. '+('Quit the game to restore display scaling.'if changed else 'Original macOS scaling retained.'),flush=True)
         # Allow menu loading to finish before the same one-shot viewport repair
         # used by the replay launcher. No menu or match input is sent.
         exited=bool(watcher.control(None,1,60))
