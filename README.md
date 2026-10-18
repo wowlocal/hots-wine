@@ -4,6 +4,11 @@ Measured CrossOver configuration work for an M5 Max MacBook Pro (40 GPU cores, 1
 
 Target: **3456 × 2234, Ultra, stable 120 FPS**, with native rendering and no generated frames. Acceptance criteria are in [configs/target.json](configs/target.json).
 
+Free native-launch integration is being implemented in Waypoint using a
+source-built Wine engine and public DXMT, without a CrossOver license. See the
+[implementation and qualification checkpoints](docs/free-waypoint-integration.md).
+The historical CrossOver measurements below do not qualify that new engine.
+
 ## Current status
 
 The Windows game and Battle.net work in a dedicated CrossOver 26.3 bottle. Performance testing has finished. The target has **not** passed validation. Earlier reduced-quality, half-resolution and static-base samples do not establish target performance.
