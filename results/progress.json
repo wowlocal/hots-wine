@@ -1,8 +1,8 @@
 {
   "status": "in_progress",
   "target_verified": false,
-  "step": "DXVK rejected for portrait corruption; original display restored",
-  "current_issue": "User observed frozen gameplay and corrupt top bar. Freeze was deliberate replay pause during trace processing; portrait corruption was confirmed against DXMT reference. DXVK rejected. Game stopped, original display scaling and RetinaMode restored; Battle.net preserved.",
+  "step": "DXMT0.80 visual preflight passed; performance validation pending",
+  "current_issue": "DXVK rejected for confirmed hero-portrait corruption. Isolated DXMT0.80 restores portraits at native Ultra on original macOS scaling. Strict120FPS target still unverified.",
   "previous_samples_valid_for_target": false,
   "render_resolution_verified": [
     3456,
@@ -11,7 +11,7 @@
   "resolution_evidence": "Metal HUD reports 3456x2234; CGWindow bounds cover the 1728x1117-point Retina display. Full game viewport visible.",
   "battle_net_session_preserved": true,
   "ultra_preset_verified": true,
-  "effective_backend": "none: game stopped",
+  "effective_backend": "dxmt-v0.80",
   "adapter_metadata_override": {
     "vendor": "1002",
     "device": "6810"

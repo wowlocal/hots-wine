@@ -3,7 +3,7 @@
   "upstream_candidate": "v0.80",
   "release": "https://github.com/3Shain/dxmt/releases/tag/v0.80",
   "archive_sha256": "8f260e36b5739e68f3bad613381441385c4dc7b85b78ba8de653d5a6a264529d",
-  "status": "Isolated overlay loaded upstream d3d11/dxgi/winemetal modules; D3D11CreateDevice returned S_OK. Full game performance untested.",
+  "status": "Full game loaded upstream modules. Initial native Ultra viewport and hero portraits verified; performance validation pending.",
   "installed_crossover_modified": false,
   "loader": "Private CX_ROOT overlay; installed CrossOver files and authenticated Battle.net unchanged",
   "device_probe_hresult": "00000000",
@@ -13,5 +13,12 @@
     "winemetal.dll",
     "winemetal.so"
   ],
-  "github_published_digest_verified": true
+  "github_published_digest_verified": true,
+  "game_render_resolution": [
+    3456,
+    2234
+  ],
+  "game_ultra_verified": true,
+  "initial_hero_portraits_verified": true,
+  "macos_original_scaling_preserved": true
 }

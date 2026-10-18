@@ -80,6 +80,7 @@ def main():
         time.sleep(60)
         until=time.monotonic()+180
         while time.monotonic()<until:
+            if game[0] not in pids():raise SystemExit('Game exited during loading; inspect private launch logs before retrying')
             try:
                 subprocess.run([str(BASE/'replay-control-native'),str(game[0]),'activate'],check=True,stdout=subprocess.DEVNULL)
                 helper('display=1');helper('native=1')
