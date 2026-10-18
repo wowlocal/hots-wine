@@ -23,6 +23,10 @@ DXVK's tested native VSync profile is rejected: it fails the frame-time target a
 
 All rows use native3456×2234 and the engine-generated Ultra preset. D3DMetal/DXVK used temporary native1× host scaling; the DXMT rows used the original Retina desktop geometry. These are tested configuration bundles, not an isolated measurement of one backend variable. Exact summaries are under `results/`. Bundled DXMT `dxmt-metal120` remains selected in [configs/recommended.json](configs/recommended.json). Disabling mouse-lag reduction did not improve the final sample. See the [measured outcome](docs/measured-outcome.md). See [visual validation](docs/visual-validation.md).
 
+## Play with the selected profile
+
+On this Mac, open `~/Applications/Play Heroes of the Storm.command`. The versioned entry is [Play Heroes of the Storm.command](Play%20Heroes%20of%20the%20Storm.command). It opens the normal game with `dxmt-metal120`, hides the diagnostic HUD and retains normal desktop scaling. The local compiled helpers are already installed under HotS-Setup. The launcher does not start a replay, profiler or matchmaking.
+
 ## Local layout
 
 - Bottle: `~/Library/Application Support/CrossOver/Bottles/Heroes of the Storm`
@@ -39,9 +43,9 @@ This repository contains our scripts, configuration targets, and sanitized measu
 
 `scripts/benchmark-replay.py` is an early launch/capture helper. It does not yet enforce Ultra, native resolution, foreground logging, or the full acceptance protocol. Its output alone cannot prove success.
 
-`scripts/launch-profile.py PROFILE --game` opens the normal game through its Switcher using the existing session; omitting `--game` opens the local benchmark replay. The normal-game path is pending live verification. It preserves the current function-key preference. Restart operations now verify the game's working directory belongs to this bottle and accept updated game build numbers. They never stop Battle.net or wineserver.
+`scripts/launch-profile.py PROFILE --game` opens the normal game through its Switcher using the existing session; omitting `--game` opens the local benchmark replay. The normal-game path was verified to reach the authenticated main menu without joining a match. It preserves the current function-key preference. Restart operations now verify the game's working directory belongs to this bottle and accept updated game build numbers. They never stop Battle.net or wineserver.
 
-`scripts/play-game.py PROFILE` keeps the original macOS scaling and uses the bottle's configured Retina reporting. The optional `--native-display` is for backend comparisons: it temporarily switches to native1× and restores the display/registry backup on game exit. Its process-exit monitor uses macOS kernel notifications, without a polling loop. This wrapper is pending a live normal-game launch/exit check.
+`scripts/play-game.py PROFILE` keeps the original macOS scaling and uses the bottle's configured Retina reporting. The optional `--native-display` is for backend comparisons: it temporarily switches to native1× and restores the display/registry backup on game exit. Its process-exit monitor uses macOS kernel notifications, without a polling loop. The default launch, native client/desktop geometry, full pointer range, retained Ultra settings and process-exit monitor were checked live. The test game was then closed while Battle.net stayed authenticated. The optional display-switch branch was not part of that final check.
 
 The optional `dxmt-v080-metal120` candidate uses an isolated, pinned [upstream DXMT0.80 release](https://github.com/3Shain/dxmt/releases/tag/v0.80). `setup-dxmt-overlay.py` verifies a locally downloaded archive and stages private runtime links; it never edits the installed application. A D3D11 device probe confirmed all four upstream runtime modules loaded successfully. Its first native Ultra fight and warmed repeat rendered correctly, but the repeat regressed to119.55FPS average and87.57FPS1%low. It is not selected. CrossOver's compatibility database prepends its selected backend path, so `WINEDLLPATH` alone did not select the new runtime; the private `CX_ROOT` overlay did.
 

@@ -1,0 +1,23 @@
+{
+  "profile": "dxmt-metal120",
+  "entry_point": "~/Applications/Play Heroes of the Storm.command",
+  "normal_game_login_verified": true,
+  "main_menu_reached": true,
+  "no_match_joined": true,
+  "existing_battle_net_process_preserved": true,
+  "macos_original_display_scaling_retained": true,
+  "wine_client_and_desktop_pixels": [
+    3456,
+    2234,
+    3456,
+    2234
+  ],
+  "pointer_reaches_90_percent_screen_width": true,
+  "ultra_settings_match": true,
+  "benchmark_input_preferences_restored": true,
+  "metal_hud_disabled_for_normal_play": true,
+  "game_exit_monitor_completed_successfully": true,
+  "test_game_closed": true,
+  "target_performance_verified": false,
+  "validation_scope": "Default launcher using original desktop scaling; optional native-display experiment not exercised by this check"
+}

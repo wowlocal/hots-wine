@@ -1,8 +1,8 @@
 {
-  "status": "performance_testing_finished",
+  "status": "finished_target_not_met",
   "target_verified": false,
   "all_required_sections_passed": false,
-  "step": "Normal-game launcher validation",
+  "step": "Best profile persisted and normal launcher verified; test game closed",
   "outcome": "Best bundled DXMT retained; final input-setting candidate failed with119.59FPS average and90.00FPS1%low",
   "selected_profile": "dxmt-metal120",
   "effective_backend": "Bundled DXMT v0.72-25-gf35d839",
@@ -14,6 +14,6 @@
   "battle_net_session_preserved": true,
   "retina_mode": true,
   "registry_dpi": 96,
-  "normal_launcher_validated": false,
+  "normal_launcher_validated": true,
   "limitation": "Missed display refreshes prevent strict120FPS validation; exact contribution of measurement overhead remains unresolved. This does not prove the hardware can never meet the target."
 }
