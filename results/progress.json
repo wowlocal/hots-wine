@@ -1,8 +1,8 @@
 {
   "status": "in_progress",
   "target_verified": false,
-  "step": "DXMT0.80 visual preflight passed; performance validation pending",
-  "current_issue": "DXVK rejected for confirmed hero-portrait corruption. Isolated DXMT0.80 restores portraits at native Ultra on original macOS scaling. Strict120FPS target still unverified.",
+  "step": "One final configuration: bundled DXMT with mouse-lag reduction disabled",
+  "current_issue": "Upstream0.80 warmed repeat regressed to119.55 average and87.57FPS1%low. Returning to bundled DXMT for final targeted input-pacing test; all Ultra and native resolution retained.",
   "previous_samples_valid_for_target": false,
   "render_resolution_verified": [
     3456,
