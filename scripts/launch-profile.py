@@ -34,7 +34,7 @@ def main():
     variables=DOCS/'Variables.txt';(out/'Variables.before.txt').write_bytes(variables.read_bytes())
     values=dict(l.split('=',1) for l in variables.read_text().splitlines() if '=' in l)
     values.update(json.loads((ROOT/'configs/ultra.json').read_text())['settings'])
-    values.update(frameratecap=str(profile['game_cap']),lastDeviceId='26640',enablefunctionkeys='true')
+    values.update(frameratecap=str(profile['game_cap']),lastDeviceId=str(profile.get('last_device_id',26640)),enablefunctionkeys='true')
     values['displaymode']=str(profile.get('display_mode',1))
     values.update(windowwidth='3456',windowheight='2234',windowx='0',windowy='0')
     variables.write_text(''.join(f'{k}={v}\n' for k,v in sorted(values.items())))
@@ -52,10 +52,12 @@ def main():
     print(f'Game PID {game[0]}; profile {a.profile}; private logs {out}',flush=True)
     if a.prepare_replay:
         # Read the clock rather than assuming that map loading finished on time.
-        helper('display=1');helper('native=1')
         until=time.monotonic()+120
+        resized=False
         while time.monotonic()<until:
             try:
+                if not resized:
+                    helper('display=1');helper('native=1');resized=True
                 state=json.loads(subprocess.check_output([str(BASE/'inspect-replay'),str(game[0]),str(out/'loaded.png')],text=True))
                 if state['clock'] and not any('Seeking' in s for s in state['state']):break
             except (subprocess.CalledProcessError,json.JSONDecodeError):pass

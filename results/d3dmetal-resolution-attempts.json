@@ -5,7 +5,7 @@
   "reported_adapter": "AMD Compatibility Mode",
   "attempts": [
     {
-      "mode": "borderless",
+      "mode": "displaymode=1",
       "registry_dpi": 96,
       "observed_layer": [
         1728,
@@ -14,7 +14,7 @@
       "viewport_covers_display": true
     },
     {
-      "mode": "borderless",
+      "mode": "displaymode=1",
       "registry_dpi": 192,
       "observed_layer": [
         1728,
@@ -23,13 +23,13 @@
       "viewport_cropped": true
     },
     {
-      "mode": "exclusive requested",
+      "mode": "displaymode=0",
       "registry_dpi": 96,
       "observed_layer": [
         864,
         507
       ],
-      "fell_back_to_small_window": true
+      "small_window_observed": true
     }
   ],
   "direct_resize_and_size_message_did_not_restore_native_rendering": true,

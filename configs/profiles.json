@@ -1,7 +1,56 @@
 {
-  "dxmt-game120": {"backend":"dxmt","game_cap":120,"msync":1,"env":{"DXMT_CONFIG":"dxgi.customVendorId=1002;dxgi.customDeviceId=6810;"}},
-  "dxmt-metal120": {"backend":"dxmt","game_cap":0,"msync":1,"env":{"DXMT_CONFIG":"dxgi.customVendorId=1002;dxgi.customDeviceId=6810;d3d11.preferredMaxFrameRate=120;"}},
-  "d3dmetal-game120": {"backend":"d3dmetal","game_cap":120,"msync":1,"env":{"D3DM_VENDOR_ID":"4098","D3DM_DEVICE_ID":"26640"}},
-  "d3dmetal-exclusive120": {"backend":"d3dmetal","game_cap":120,"msync":1,"display_mode":0,"env":{"D3DM_VENDOR_ID":"4098","D3DM_DEVICE_ID":"26640"}},
-  "dxvk-game120": {"backend":"dxvk","game_cap":120,"msync":1,"env":{"DXVK_CONFIG":"dxgi.customVendorId=1002;dxgi.customDeviceId=6810;"}}
+  "dxmt-game120": {
+    "backend": "dxmt",
+    "game_cap": 120,
+    "msync": 1,
+    "env": {
+      "DXMT_CONFIG": "dxgi.customVendorId=1002;dxgi.customDeviceId=6810;"
+    }
+  },
+  "dxmt-metal120": {
+    "backend": "dxmt",
+    "game_cap": 0,
+    "msync": 1,
+    "env": {
+      "DXMT_CONFIG": "dxgi.customVendorId=1002;dxgi.customDeviceId=6810;d3d11.preferredMaxFrameRate=120;"
+    }
+  },
+  "d3dmetal-game120": {
+    "backend": "d3dmetal",
+    "game_cap": 120,
+    "msync": 1,
+    "env": {
+      "D3DM_VENDOR_ID": "4098",
+      "D3DM_DEVICE_ID": "26640"
+    }
+  },
+  "dxvk-game120": {
+    "backend": "dxvk",
+    "game_cap": 120,
+    "msync": 1,
+    "env": {
+      "DXVK_CONFIG": "dxgi.customVendorId=1002;dxgi.customDeviceId=6810;"
+    },
+    "last_device_id": 452985841
+  },
+  "d3dmetal-mode0-120": {
+    "backend": "d3dmetal",
+    "game_cap": 120,
+    "msync": 1,
+    "display_mode": 0,
+    "env": {
+      "D3DM_VENDOR_ID": "4098",
+      "D3DM_DEVICE_ID": "26640"
+    }
+  },
+  "d3dmetal-mode2-120": {
+    "backend": "d3dmetal",
+    "game_cap": 120,
+    "msync": 1,
+    "env": {
+      "D3DM_VENDOR_ID": "4098",
+      "D3DM_DEVICE_ID": "26640"
+    },
+    "display_mode": 2
+  }
 }
