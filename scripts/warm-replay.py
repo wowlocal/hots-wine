@@ -6,10 +6,13 @@ p=argparse.ArgumentParser();p.add_argument('pid',type=int);p.add_argument('--tar
 base=Path.home()/'Library/Application Support/CrossOver/HotS-Setup';control=base/'replay-control-native'
 def key(command):subprocess.run([str(control),str(a.pid),command],check=True,stdout=subprocess.DEVNULL)
 def inspect():return json.loads(subprocess.check_output([str(base/'inspect-replay'),str(a.pid),str(base/'warmup-current.png')],text=True))
+key('center')
 first=inspect()['clock'];time.sleep(2);second=inspect()['clock']
+if not first or not second:raise SystemExit('Clock is not visible; warm-up cancelled before changing playback')
 for _ in range(a.speed_steps):key('faster')
 if first==second:key('pause')
-camera=subprocess.Popen([str(control),str(a.pid),'hold-center','180'],stdout=subprocess.DEVNULL)
+stop=base/f'warm-center-{a.pid}.stop';stop.unlink(missing_ok=True)
+camera=subprocess.Popen([str(control),str(a.pid),'hold-center','180',str(stop)],stdout=subprocess.DEVNULL)
 end=time.monotonic()+300
 try:
     while time.monotonic()<end:
@@ -22,5 +25,5 @@ try:
 finally:
     key('pause')
     for _ in range(a.speed_steps):key('slower')
-    # Do not kill a helper while it holds a key: it releases Space on its own.
+    stop.write_text('stop\n');camera.wait(timeout=3)
 print('Warm-up completed; replay paused at normal speed.',flush=True)

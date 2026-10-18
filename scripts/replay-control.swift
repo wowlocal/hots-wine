@@ -36,11 +36,15 @@ func key(_ code: CGKeyCode, flags: CGEventFlags = []) {
 if command == "camera" { key(23); key(8) } // Observe player5, then follow player camera.
 if command == "center" { key(23); key(49) }
 if command == "hold-center" {
-    guard CommandLine.arguments.count == 4, let seconds=Double(CommandLine.arguments[3]), seconds>0,seconds<=180 else {exit(2)}
+    guard (4...5).contains(CommandLine.arguments.count), let seconds=Double(CommandLine.arguments[3]), seconds>0,seconds<=180 else {exit(2)}
+    let stopFile=CommandLine.arguments.count==5 ? CommandLine.arguments[4] : nil
     checkFocus()
     let down=CGEvent(keyboardEventSource:nil,virtualKey:49,keyDown:true);down?.flags=[];down?.post(tap:.cghidEventTap)
     let end=ProcessInfo.processInfo.systemUptime+seconds
-    while ProcessInfo.processInfo.systemUptime<end && NSWorkspace.shared.frontmostApplication?.processIdentifier==pid {Thread.sleep(forTimeInterval:0.1)}
+    while ProcessInfo.processInfo.systemUptime<end && NSWorkspace.shared.frontmostApplication?.processIdentifier==pid {
+        if let stopFile=stopFile,FileManager.default.fileExists(atPath:stopFile){break}
+        Thread.sleep(forTimeInterval:0.1)
+    }
     let up=CGEvent(keyboardEventSource:nil,virtualKey:49,keyDown:false);up?.flags=[];up?.post(tap:.cghidEventTap)
 }
 func chord(_ modifier: CGKeyCode, _ flags: CGEventFlags, _ code: CGKeyCode) {
