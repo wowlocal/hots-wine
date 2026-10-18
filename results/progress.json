@@ -1,8 +1,8 @@
 {
   "status": "in_progress",
   "target_verified": false,
-  "step": "Restored original display and returned to measured DXMT profile",
-  "current_issue": "Native1x and DPI initializer experiments did not qualify D3DMetal/DXVK viewports. Returning to DXMT for repeatable fight validation.",
+  "step": "First HUD-hidden native Ultra fight passes numerical acceptance",
+  "current_issue": "Validating two later fights and repeating presentation attribution without the HUD.",
   "previous_samples_valid_for_target": false,
   "render_resolution_verified": [
     3456,
@@ -18,5 +18,11 @@
   },
   "retina_mode": true,
   "registry_dpi": 96,
-  "display_mode_refresh": "Explicit Wine ChangeDisplaySettingsW(3456x2234) and client resize; Metal HUD confirms3456x2234."
+  "display_mode_refresh": "Explicit Wine ChangeDisplaySettingsW(3456x2234) and client resize; Metal HUD confirms3456x2234.",
+  "best_verified_sample": {
+    "average_fps": 120.00014722373669,
+    "one_percent_low_fps": 119.99940000299998,
+    "p99_ms": 8.333375,
+    "max_ms": 8.333375
+  }
 }
