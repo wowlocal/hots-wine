@@ -27,18 +27,18 @@ void mainCRTStartup(void) {
  SetProcessDPIAware();
  void* window=FindWindowA(0,"Heroes of the Storm");
  if(!window) ExitProcess(2);
- SetForegroundWindow(window);
- Sleep(250);
  char* line=GetCommandLineA();
  char* keys=0;
- for(char* p=line;*p;p++) if(p[0]==' ' && p[1]=='s' && p[2]=='i' && p[3]=='z' && p[4]=='e' && p[5]=='=' && p[6]=='1') {SendMessageA(window,5,0,((long long)2234<<16)|3456);ExitProcess(0);}
- for(char* p=line;*p;p++) if(p[0]==' ' && p[1]=='u' && p[2]=='n' && p[3]=='c' && p[4]=='l' && p[5]=='i' && p[6]=='p') ExitProcess(ClipCursor(0)?0:8);
  for(char* p=line;*p;p++) if(p[0]==' ' && p[1]=='q' && p[2]=='u' && p[3]=='e' && p[4]=='r' && p[5]=='y') {
   RECT r;GetClientRect(window,&r);int values[4]={r.right-r.left,r.bottom-r.top,GetSystemMetrics(0),GetSystemMetrics(1)};
   char output[128];int length=0;
   for(int i=0;i<4;i++) {char n[16];int c=0,v=values[i];do{n[c++]='0'+v%10;v/=10;}while(v);while(c)output[length++]=n[--c];output[length++]=i==3?'\n':' ';}
   DWORD written;WriteFile(GetStdHandle((DWORD)-11),output,length,&written,0);ExitProcess(0);
  }
+ SetForegroundWindow(window);
+ Sleep(250);
+ for(char* p=line;*p;p++) if(p[0]==' ' && p[1]=='s' && p[2]=='i' && p[3]=='z' && p[4]=='e' && p[5]=='=' && p[6]=='1') {SendMessageA(window,5,0,((long long)2234<<16)|3456);ExitProcess(0);}
+ for(char* p=line;*p;p++) if(p[0]==' ' && p[1]=='u' && p[2]=='n' && p[3]=='c' && p[4]=='l' && p[5]=='i' && p[6]=='p') ExitProcess(ClipCursor(0)?0:8);
  for(char* p=line;*p;p++) if(p[0]==' ' && p[1]=='j' && p[2]=='u' && p[3]=='m' && p[4]=='p' && p[5]=='=') {
   int n=0;for(char* q=p+6;*q>='0' && *q<='9';q++)n=n*10+(*q-'0');if(n>950)ExitProcess(4);
   int x=3456*(785000+195*n)/1000000,y=2234*162/1000;

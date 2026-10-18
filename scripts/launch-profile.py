@@ -22,8 +22,8 @@ def pids():
         opened=subprocess.run(['lsof','-a','-p',str(pid),'-d','cwd','-Fn'],capture_output=True,text=True)
         if f'n{GAME}/Support64' in opened.stdout.splitlines():found.append(pid)
     return found
-def helper(arg):
-    subprocess.run([WINE,'--bottle','Heroes of the Storm','--no-gui','--debugmsg','-all','--cx-app',r'Y:\Library\Application Support\CrossOver\HotS-Setup\replay-control-build\replay-control.exe',arg],check=True)
+def helper(arg,capture=False):
+    return subprocess.run([WINE,'--bottle','Heroes of the Storm','--no-gui','--debugmsg','-all','--cx-app',r'Y:\Library\Application Support\CrossOver\HotS-Setup\replay-control-build\replay-control.exe',arg],check=True,capture_output=capture,text=capture)
 
 def main():
     profiles=json.loads((ROOT/'configs/profiles.json').read_text())

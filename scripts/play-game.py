@@ -54,9 +54,13 @@ def main():
         # used by the replay launcher. No menu or match input is sent.
         exited=bool(watcher.control(None,1,60))
         if not exited:
-            subprocess.run([str(BASE/'replay-control-native'),str(pid),'activate'],check=True)
-            launch.helper('display=1');launch.helper('native=1')
-            print('Native viewport applied; waiting for game exit.',flush=True)
+            geometry=launch.helper('query',capture=True).stdout.split()
+            if geometry!=['3456','2234','3456','2234']:
+                subprocess.run([str(BASE/'replay-control-native'),str(pid),'activate'],check=True)
+                launch.helper('display=1');launch.helper('native=1')
+                geometry=launch.helper('query',capture=True).stdout.split()
+                if geometry!=['3456','2234','3456','2234']:raise RuntimeError('Wine client/desktop geometry did not reach native resolution; game remains open')
+            print('Native client and Wine desktop geometry verified; waiting for game exit.',flush=True)
             watcher.control(None,1,None)
         watcher.close()
     finally:
