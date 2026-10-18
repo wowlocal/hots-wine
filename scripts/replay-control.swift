@@ -8,7 +8,7 @@ guard CommandLine.arguments.count >= 3, let pid = Int32(CommandLine.arguments[1]
       let app = NSRunningApplication(processIdentifier: pid),
       app.localizedName == "HeroesOfTheStorm_x64.exe" else { fatalError("Expected the Wine HotS PID") }
 let command = CommandLine.arguments[2]
-guard ["camera", "center", "follow", "hold-center", "seek", "hud", "timeline", "pause", "faster", "slower", "restart", "back", "next"].contains(command) else { fatalError("Unsupported replay command") }
+guard ["camera", "center", "follow", "hold-center", "play-for", "seek", "hud", "timeline", "pause", "faster", "slower", "restart", "back", "next"].contains(command) else { fatalError("Unsupported replay command") }
 guard CGPreflightPostEventAccess() else { fatalError("Event posting is unavailable; no input sent") }
 let windows = CGWindowListCopyWindowInfo([.optionAll, .excludeDesktopElements], kCGNullWindowID) as? [[String: Any]] ?? []
 guard let window = windows.first(where: {
@@ -66,6 +66,13 @@ if command == "back" || command == "next" {
     for _ in 0..<count { key(command == "back" ? 11 : 3); Thread.sleep(forTimeInterval:0.2) }
 }
 if command == "pause" { key(35) }
+if command == "play-for" {
+    guard CommandLine.arguments.count==4,let seconds=Double(CommandLine.arguments[3]),seconds>=0.5,seconds<=60 else {exit(2)}
+    let started=ProcessInfo.processInfo.systemUptime
+    key(35)
+    Thread.sleep(forTimeInterval:max(0,seconds-(ProcessInfo.processInfo.systemUptime-started)))
+    key(35)
+}
 if command == "faster" { key(24) }
 if command == "slower" { key(27) }
 if command == "seek" {
