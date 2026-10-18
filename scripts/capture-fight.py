@@ -9,7 +9,7 @@ out=base/'benchmarks'/a.label;out.mkdir(exist_ok=False)
 docs=base.parent/'Bottles/Heroes of the Storm/drive_c/users/crossover/Documents/Heroes of the Storm'
 actual=dict(l.split('=',1) for l in (docs/'Variables.txt').read_text().splitlines() if '=' in l)
 expected=json.loads((Path(__file__).resolve().parents[1]/'configs/ultra.json').read_text())['settings']
-errors={k:[actual.get(k),v] for k,v in expected.items() if actual.get(k)!=v and k not in ['enablefunctionkeys','frameratecap','vsync']}
+errors={k:[actual.get(k),v] for k,v in expected.items() if actual.get(k)!=v and k not in ['enablefunctionkeys','frameratecap','vsync','displaymode']}
 if errors:raise SystemExit(f'Ultra/native settings mismatch: {errors}')
 (out/'Variables.before.txt').write_bytes((docs/'Variables.txt').read_bytes())
 log=(out/'xctrace.log').open('w')

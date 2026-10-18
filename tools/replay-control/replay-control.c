@@ -30,6 +30,7 @@ void mainCRTStartup(void) {
  Sleep(250);
  char* line=GetCommandLineA();
  char* keys=0;
+ for(char* p=line;*p;p++) if(p[0]==' ' && p[1]=='s' && p[2]=='i' && p[3]=='z' && p[4]=='e' && p[5]=='=' && p[6]=='1') {SendMessageA(window,5,0,((long long)2234<<16)|3456);ExitProcess(0);}
  for(char* p=line;*p;p++) if(p[0]==' ' && p[1]=='u' && p[2]=='n' && p[3]=='c' && p[4]=='l' && p[5]=='i' && p[6]=='p') ExitProcess(ClipCursor(0)?0:8);
  for(char* p=line;*p;p++) if(p[0]==' ' && p[1]=='q' && p[2]=='u' && p[3]=='e' && p[4]=='r' && p[5]=='y') {
   RECT r;GetClientRect(window,&r);int values[4]={r.right-r.left,r.bottom-r.top,GetSystemMetrics(0),GetSystemMetrics(1)};

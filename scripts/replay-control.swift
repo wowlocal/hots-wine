@@ -53,7 +53,7 @@ func chord(_ modifier: CGKeyCode, _ flags: CGEventFlags, _ code: CGKeyCode) {
 }
 // HeroesData overrides the Core CameraFollow binding with L.
 if command == "follow" { key(23); key(37) }
-if command == "hud" { chord(55, .maskCommand, 101) }
+if command == "hud" { chord(56, .maskShift, 101) }
 if command == "timeline" { chord(59, .maskControl, 17) }
 if command == "restart" { chord(59, .maskControl, 14) }
 if command == "back" || command == "next" {

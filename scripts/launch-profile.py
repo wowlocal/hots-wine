@@ -35,6 +35,8 @@ def main():
     values=dict(l.split('=',1) for l in variables.read_text().splitlines() if '=' in l)
     values.update(json.loads((ROOT/'configs/ultra.json').read_text())['settings'])
     values.update(frameratecap=str(profile['game_cap']),lastDeviceId='26640',enablefunctionkeys='true')
+    values['displaymode']=str(profile.get('display_mode',1))
+    values.update(windowwidth='3456',windowheight='2234',windowx='0',windowy='0')
     variables.write_text(''.join(f'{k}={v}\n' for k,v in sorted(values.items())))
     replay=next(DOCS.rglob('*16.02.25 Cursed Hollow.StormReplay'))
     replay_win='C:\\'+str(replay.relative_to(BOTTLE/'drive_c')).replace('/','\\')
@@ -50,6 +52,7 @@ def main():
     print(f'Game PID {game[0]}; profile {a.profile}; private logs {out}',flush=True)
     if a.prepare_replay:
         # Read the clock rather than assuming that map loading finished on time.
+        helper('display=1');helper('native=1')
         until=time.monotonic()+120
         while time.monotonic()<until:
             try:

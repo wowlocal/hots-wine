@@ -1,0 +1,37 @@
+{
+  "backend": "d3dmetal",
+  "target_sample_valid": false,
+  "ultra_verified": true,
+  "reported_adapter": "AMD Compatibility Mode",
+  "attempts": [
+    {
+      "mode": "borderless",
+      "registry_dpi": 96,
+      "observed_layer": [
+        1728,
+        1117
+      ],
+      "viewport_covers_display": true
+    },
+    {
+      "mode": "borderless",
+      "registry_dpi": 192,
+      "observed_layer": [
+        1728,
+        1117
+      ],
+      "viewport_cropped": true
+    },
+    {
+      "mode": "exclusive requested",
+      "registry_dpi": 96,
+      "observed_layer": [
+        864,
+        507
+      ],
+      "fell_back_to_small_window": true
+    }
+  ],
+  "direct_resize_and_size_message_did_not_restore_native_rendering": true,
+  "battle_net_preserved": true
+}
