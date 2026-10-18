@@ -1,0 +1,29 @@
+{
+  "stage": "steady-replay-after-warm-seek",
+  "metric": "Global compositor surface swaps; full-display foreground attribution must be verified",
+  "schema": "display-surface-swap",
+  "trim_start_seconds": 7.0,
+  "trim_end_seconds": 1.0,
+  "frame_count": 2666,
+  "sample_seconds": 22.366643624999472,
+  "average_fps": 119.15064435601029,
+  "one_percent_low_fps": 70.43479773686525,
+  "p50_ms": 8.333333,
+  "p95_ms": 8.333375,
+  "p99_ms": 8.333375,
+  "max_ms": 16.666708,
+  "frames_over_25_ms": 0,
+  "frames_over_33_3_ms": 0,
+  "frames_over_50_ms": 0,
+  "profile": "dxmt-metal120",
+  "backend": "dxmt",
+  "render_resolution": [
+    3456,
+    2234
+  ],
+  "ultra_verified": true,
+  "foreground_all_samples": true,
+  "camera": "held Space on original replay player",
+  "capture_overhead_resolved": false,
+  "acceptance_passed": false
+}

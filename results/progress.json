@@ -1,8 +1,8 @@
 {
   "status": "in_progress",
   "target_verified": false,
-  "step": "First foreground native-Ultra team-fight baseline measured",
-  "current_issue": "DXMT game limiter produced113.2FPS average and20.48ms p99; testing Metal pacing next. Capture overhead remains unresolved.",
+  "step": "Metal pacing reached119.15FPS average and8.33ms p99 in a warm fight",
+  "current_issue": "1% low70.4FPS still fails; D3DMetal rendering dimensions must be corrected before comparison.",
   "previous_samples_valid_for_target": false,
   "render_resolution_verified": [
     3456,
