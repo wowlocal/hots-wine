@@ -1,13 +1,14 @@
 {
   "status": "in_progress",
   "target_verified": false,
-  "step": "Native-resolution window fixed without Battle.net restart",
-  "current_issue": "Ultra preset definitions still being verified; no valid target FPS sample yet.",
+  "step": "Engine-generated Ultra preset verified and saved",
+  "current_issue": "Low-overhead actual-present-time recorder is being integrated. Backend comparisons remain outstanding.",
   "previous_samples_valid_for_target": false,
   "render_resolution_verified": [
     3456,
     2234
   ],
   "resolution_evidence": "Metal HUD reports 3456x2234; CGWindow bounds cover the 1728x1117-point Retina display. Full game viewport visible.",
-  "battle_net_session_preserved": true
+  "battle_net_session_preserved": true,
+  "ultra_preset_verified": true
 }
