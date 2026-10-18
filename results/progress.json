@@ -1,8 +1,8 @@
 {
   "status": "in_progress",
   "target_verified": false,
-  "step": "Verified foreground activation and keyboard replay restart",
-  "current_issue": "Qualifying keyboard skips and foreground fight capture; passive frame-probe prototype remains unqualified.",
+  "step": "First foreground native-Ultra team-fight baseline measured",
+  "current_issue": "DXMT game limiter produced113.2FPS average and20.48ms p99; testing Metal pacing next. Capture overhead remains unresolved.",
   "previous_samples_valid_for_target": false,
   "render_resolution_verified": [
     3456,

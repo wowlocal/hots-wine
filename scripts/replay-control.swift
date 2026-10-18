@@ -43,16 +43,8 @@ func chord(_ modifier: CGKeyCode, _ flags: CGEventFlags, _ code: CGKeyCode) {
     let up = CGEvent(keyboardEventSource:nil, virtualKey:modifier, keyDown:false)
     up?.flags=[];up?.post(tap:.cghidEventTap)
 }
-if command == "follow" {
-    key(23)
-    for code: CGKeyCode in [59, 56] {
-        CGEvent(keyboardEventSource:nil, virtualKey:code, keyDown:true)?.post(tap:.cghidEventTap)
-    }
-    key(3, flags:[.maskControl,.maskShift])
-    for code: CGKeyCode in [56,59] {
-        CGEvent(keyboardEventSource:nil, virtualKey:code, keyDown:false)?.post(tap:.cghidEventTap)
-    }
-}
+// HeroesData overrides the Core CameraFollow binding with L.
+if command == "follow" { key(23); key(37) }
 if command == "hud" { chord(55, .maskCommand, 101) }
 if command == "timeline" { chord(59, .maskControl, 17) }
 if command == "restart" { chord(59, .maskControl, 14) }

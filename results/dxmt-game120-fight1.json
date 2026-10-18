@@ -1,0 +1,32 @@
+{
+  "stage": "steady-replay-after-warm-seek",
+  "metric": "Deduplicated Metal actual-presentation timestamps; verified timebase correction",
+  "schema": "ca-client-presented-handler",
+  "trim_start_seconds": 5.0,
+  "trim_end_seconds": 1.0,
+  "frame_count": 4513,
+  "sample_seconds": 39.851138874912046,
+  "average_fps": 113.22135646267559,
+  "one_percent_low_fps": 45.71351703848627,
+  "p50_ms": 8.224707936000824,
+  "p95_ms": 14.277958987198831,
+  "p99_ms": 20.476631480642343,
+  "max_ms": 23.47991702400017,
+  "frames_over_25_ms": 0,
+  "frames_over_33_3_ms": 0,
+  "frames_over_50_ms": 0,
+  "backend": "dxmt",
+  "profile": "dxmt-game120",
+  "render_resolution": [
+    3456,
+    2234
+  ],
+  "ultra_verified": true,
+  "foreground_all_samples": true,
+  "foreground_samples": 257,
+  "replay": "Cursed Hollow",
+  "section": "game clock approximately6:54\u20137:34; top-lane team fight",
+  "camera": "C replay auto camera, observed starting on the top siege",
+  "capture_overhead_resolved": false,
+  "acceptance_passed": false
+}

@@ -1,0 +1,59 @@
+#!/usr/bin/env python3
+"""Launch a native Ultra replay in the existing authenticated bottle.
+
+Only this bottle's game can be stopped. Battle.net and wineserver stay running.
+All backups and paths containing account information remain outside the repo.
+"""
+import argparse,datetime,json,os,shlex,signal,subprocess,time
+from pathlib import Path
+
+ROOT=Path(__file__).resolve().parents[1]
+BASE=Path.home()/'Library/Application Support/CrossOver/HotS-Setup'
+BOTTLE=BASE.parent/'Bottles/Heroes of the Storm'
+DOCS=BOTTLE/'drive_c/users/crossover/Documents/Heroes of the Storm'
+WINE='/Applications/CrossOver.app/Contents/SharedSupport/CrossOver/bin/wine'
+EXE=r'C:\Program Files (x86)\Heroes of the Storm\Versions\Base98348\HeroesOfTheStorm_x64.exe'
+def pids():
+    return [int(line.split(None,1)[0]) for line in subprocess.check_output(['ps','-axo','pid=,command='],text=True).splitlines() if line.strip().split(None,1)[-1].startswith(EXE)]
+def helper(arg):
+    subprocess.run([WINE,'--bottle','Heroes of the Storm','--no-gui','--debugmsg','-all','--cx-app',r'Y:\Library\Application Support\CrossOver\HotS-Setup\replay-control-build\replay-control.exe',arg],check=True)
+
+def main():
+    profiles=json.loads((ROOT/'configs/profiles.json').read_text())
+    p=argparse.ArgumentParser();p.add_argument('profile',choices=profiles);p.add_argument('--replace-game',action='store_true');p.add_argument('--prepare-replay',action='store_true');p.add_argument('--hud',action='store_true')
+    a=p.parse_args();profile=profiles[a.profile]
+    running=pids()
+    if running and not a.replace_game:raise SystemExit('Game is running. Use --replace-game only for an authorized benchmark restart.')
+    for pid in running:os.kill(pid,signal.SIGTERM)
+    until=time.monotonic()+5
+    while pids() and time.monotonic()<until:time.sleep(.2)
+    for pid in pids():
+        if pid in running:os.kill(pid,signal.SIGKILL)
+    time.sleep(.5)
+    out=BASE/'launches'/(datetime.datetime.now().strftime('%Y%m%d-%H%M%S')+'-'+a.profile);out.mkdir(parents=True)
+    variables=DOCS/'Variables.txt';(out/'Variables.before.txt').write_bytes(variables.read_bytes())
+    values=dict(l.split('=',1) for l in variables.read_text().splitlines() if '=' in l)
+    values.update(json.loads((ROOT/'configs/ultra.json').read_text())['settings'])
+    values.update(frameratecap=str(profile['game_cap']),lastDeviceId='26640',enablefunctionkeys='true')
+    variables.write_text(''.join(f'{k}={v}\n' for k,v in sorted(values.items())))
+    replay=next(DOCS.rglob('*16.02.25 Cursed Hollow.StormReplay'))
+    replay_win='C:\\'+str(replay.relative_to(BOTTLE/'drive_c')).replace('/','\\')
+    env={'CX_GRAPHICS_BACKEND':profile['backend'],'WINEMSYNC':str(profile['msync']),'WINE_SIMULATE_WRITECOPY':'1','MTL_HUD_ENABLED':'1' if a.hud else '0',**profile['env']}
+    log=(out/'wine.log').open('w')
+    command=[WINE,'--bottle','Heroes of the Storm','--no-gui','--debugmsg','-all','--no-wait','--env',shlex.join(f'{k}={v}' for k,v in env.items()),'--cx-app',r'C:\Program Files (x86)\Heroes of the Storm\Support64\HeroesSwitcher_x64.exe',replay_win,'-sso=1','-launch','-uid','heroes']
+    subprocess.Popen(command,stdout=log,stderr=log,start_new_session=True)
+    until=time.monotonic()+45
+    while not pids() and time.monotonic()<until:time.sleep(.5)
+    game=pids()
+    if len(game)!=1:raise SystemExit('Game startup did not produce one expected process. Inspect private launch logs.')
+    (out/'launch.json').write_text(json.dumps({'profile':a.profile,'env':env,'pid':game[0]},indent=2)+'\n')
+    print(f'Game PID {game[0]}; profile {a.profile}; private logs {out}',flush=True)
+    if a.prepare_replay:
+        # Loading can reset dimensions. Refresh only after initial map loading.
+        time.sleep(40)
+        helper('display=1');helper('native=1')
+        subprocess.run([str(BASE/'replay-control-native'),str(game[0]),'restart'],check=True)
+        subprocess.run([str(BASE/'replay-control-native'),str(game[0]),'pause'],check=True)
+        print('Replay restarted and paused; verify viewport and effective settings before measuring.',flush=True)
+
+if __name__=='__main__':main()
