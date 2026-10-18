@@ -1,0 +1,20 @@
+{
+  "valid": true,
+  "application_presentations": 1780,
+  "display_swaps": 1780,
+  "max_app_to_swap_error_ns": 166.69866752624512,
+  "max_swap_to_app_error_ns": 166.69866752624512,
+  "timebase": "125/3",
+  "boundary_trim_seconds": 0.25,
+  "method": "Absolute trace epoch correction; no fitted phase or rate",
+  "profile": "dxmt-vsync120",
+  "render_resolution": [
+    3456,
+    2234
+  ],
+  "ultra_verified": true,
+  "hud_visible": false,
+  "foreground_all_samples": true,
+  "stage": "simultaneous attribution check after warm-up",
+  "used_for_performance_acceptance": false
+}

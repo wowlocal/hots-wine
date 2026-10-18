@@ -27,5 +27,6 @@
   "replay_clock_prepared": "14:52",
   "hud_visible": false,
   "acceptance_passed": false,
-  "overall_goal_verified": false
+  "overall_goal_verified": false,
+  "measurement_attribution": "Simultaneous native HUD-hidden DXMT check matched1780 game presentations and raw swaps within167ns; this sample also has full-display viewport and continuous foreground verification."
 }

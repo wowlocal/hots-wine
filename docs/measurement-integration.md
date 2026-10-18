@@ -25,3 +25,5 @@ A lighter Frame Lifetimes capture exports the raw `display-surface-swap` schema.
 A temporary AppInit DPI initializer experiment did not produce a qualified load or viewport fix. Its registry values were removed. It is not part of the working launch configuration. The native display-mode helper stores the original mode privately and can restore it with `display-mode restore`; changes use session scope.
 
 The absolute trace-epoch cross-check now matches1708 interior application presentations to1708 raw swaps in the reference capture, in both directions, with a maximum discrepancy of167ns. It does not fit a time offset or rate. This is calibration only; the HUD-hidden native winning profile still needs the same simultaneous check.
+
+The native3456×2234 Ultra HUD-hidden DXMT cross-check passed:1780 interior application presentations and1780 raw swaps matched in both directions within167ns. The combined heavy capture produced more missed refreshes than the light captures; its performance numbers are diagnostic, not the acceptance cohort. Exact overhead is not isolated by this single repeat.
