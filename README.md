@@ -18,8 +18,9 @@ DXVK's tested native VSync profile is rejected: it fails the frame-time target a
 | DXMT VSync120, three fights | 119.78–120.00 | 101.25–120.00 | 8.33 | 16.67 | One of three passes |
 | D3DMetal VSync, warmed first fight | 117.63 | 60.00 | 16.67 | 16.67 | Fails |
 | DXVK VSync, warmed first fight | 119.71 | 96.72 | 8.33 | 20.83 | Fails; portrait corruption |
+| Upstream DXMT0.80, warmed first fight | 119.55 | 87.57 | 8.33 | 16.67 | Fails; worse pacing |
 
-All rows use native3456×2234 and the engine-generated Ultra preset. D3DMetal/DXVK used temporary native1× host scaling; the DXMT rows used the original Retina desktop geometry. These are tested configuration bundles, not an isolated measurement of one backend variable. Exact summaries are under `results/`; DXMT0.80 performance is pending. See [visual validation](docs/visual-validation.md).
+All rows use native3456×2234 and the engine-generated Ultra preset. D3DMetal/DXVK used temporary native1× host scaling; the DXMT rows used the original Retina desktop geometry. These are tested configuration bundles, not an isolated measurement of one backend variable. Exact summaries are under `results/`. Bundled DXMT remains the selected baseline; a final isolated mouse-lag setting test is in progress. See [visual validation](docs/visual-validation.md).
 
 ## Local layout
 
@@ -41,7 +42,7 @@ This repository contains our scripts, configuration targets, and sanitized measu
 
 `scripts/play-game.py PROFILE` keeps the original macOS scaling and uses the bottle's configured Retina reporting. The optional `--native-display` is for backend comparisons: it temporarily switches to native1× and restores the display/registry backup on game exit. Its process-exit monitor uses macOS kernel notifications, without a polling loop. This wrapper is pending a live normal-game launch/exit check.
 
-The optional `dxmt-v080-metal120` candidate uses an isolated, pinned [upstream DXMT0.80 release](https://github.com/3Shain/dxmt/releases/tag/v0.80). `setup-dxmt-overlay.py` verifies a locally downloaded archive and stages private runtime links; it never edits the installed application. A D3D11 device probe confirmed all four upstream runtime modules loaded successfully. Full-game performance is still pending. CrossOver's compatibility database prepends its selected backend path, so `WINEDLLPATH` alone did not select the new runtime; the private `CX_ROOT` overlay did.
+The optional `dxmt-v080-metal120` candidate uses an isolated, pinned [upstream DXMT0.80 release](https://github.com/3Shain/dxmt/releases/tag/v0.80). `setup-dxmt-overlay.py` verifies a locally downloaded archive and stages private runtime links; it never edits the installed application. A D3D11 device probe confirmed all four upstream runtime modules loaded successfully. Its first native Ultra fight and warmed repeat rendered correctly, but the repeat regressed to119.55FPS average and87.57FPS1%low. It is not selected. CrossOver's compatibility database prepends its selected backend path, so `WINEDLLPATH` alone did not select the new runtime; the private `CX_ROOT` overlay did.
 
 ## Measurement protocol
 

@@ -1,0 +1,38 @@
+{
+  "profile": "dxmt-metal120",
+  "runtime": "Bundled CrossOver DXMT v0.72-25-gf35d839",
+  "render_resolution": [
+    3456,
+    2234
+  ],
+  "quality": "Ultra",
+  "target_verified": false,
+  "selection_reason": "Best three-fight cohort with correct rendering; strict frame-pacing target not met",
+  "host_display": "Original Retina scaling,120Hz",
+  "wine_retina_mode": "Y",
+  "registry_dpi": 96,
+  "game_cap": 0,
+  "metal_preferred_max_frame_rate": 120,
+  "vsync": false,
+  "msync": true,
+  "mouse_lag_reduction": "Engine default; explicit key omitted",
+  "benchmark_results": [
+    "results/dxmt-metal120-fight1-nohud.json",
+    "results/dxmt-metal120-fight2-nohud.json",
+    "results/dxmt-metal120-fight3-nohud.json"
+  ],
+  "three_fight_average_fps_range": [
+    119.86603260541087,
+    120.00014722373669
+  ],
+  "three_fight_one_percent_low_fps_range": [
+    107.99956756973145,
+    119.99940000299998
+  ],
+  "p99_ms": 8.333375,
+  "worst_frame_ms": 16.666667,
+  "limitations": [
+    "Three short sections from one replay do not guarantee live-match performance",
+    "Profiler overhead was reduced and checked but its exact contribution to isolated missed refreshes remains unresolved"
+  ]
+}
