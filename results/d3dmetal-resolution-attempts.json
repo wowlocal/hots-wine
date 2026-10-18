@@ -33,5 +33,14 @@
     }
   ],
   "direct_resize_and_size_message_did_not_restore_native_rendering": true,
-  "battle_net_preserved": true
+  "battle_net_preserved": true,
+  "latest_native_viewport_verified": true,
+  "latest_method": "Host native1x3456x2234 at120Hz, RetinaMode=N, DPI96; resize only after world loads, without restarting replay.",
+  "latest_layer": [
+    3456,
+    2234
+  ],
+  "latest_viewport_covers_display": true,
+  "latest_ultra_verified": true,
+  "performance_validation": "running"
 }
