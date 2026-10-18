@@ -49,11 +49,22 @@ def main():
     (out/'launch.json').write_text(json.dumps({'profile':a.profile,'env':env,'pid':game[0]},indent=2)+'\n')
     print(f'Game PID {game[0]}; profile {a.profile}; private logs {out}',flush=True)
     if a.prepare_replay:
-        # Loading can reset dimensions. Refresh only after initial map loading.
-        time.sleep(40)
+        # Read the clock rather than assuming that map loading finished on time.
+        until=time.monotonic()+120
+        while time.monotonic()<until:
+            try:
+                state=json.loads(subprocess.check_output([str(BASE/'inspect-replay'),str(game[0]),str(out/'loaded.png')],text=True))
+                if state['clock'] and not any('Seeking' in s for s in state['state']):break
+            except (subprocess.CalledProcessError,json.JSONDecodeError):pass
+            time.sleep(2)
+        else:raise SystemExit('Replay clock was not detected; do not send preparation keys while loading.')
         helper('display=1');helper('native=1')
         subprocess.run([str(BASE/'replay-control-native'),str(game[0]),'restart'],check=True)
-        subprocess.run([str(BASE/'replay-control-native'),str(game[0]),'pause'],check=True)
+        time.sleep(2)
+        def clock():
+            return json.loads(subprocess.check_output([str(BASE/'inspect-replay'),str(game[0]),str(out/'prepared.png')],text=True))['clock']
+        first=clock();time.sleep(2);second=clock()
+        if first!=second:subprocess.run([str(BASE/'replay-control-native'),str(game[0]),'pause'],check=True)
         print('Replay restarted and paused; verify viewport and effective settings before measuring.',flush=True)
 
 if __name__=='__main__':main()

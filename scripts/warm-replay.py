@@ -5,8 +5,10 @@ from pathlib import Path
 p=argparse.ArgumentParser();p.add_argument('pid',type=int);p.add_argument('--target',type=int,default=900);p.add_argument('--speed-steps',type=int,default=4);a=p.parse_args()
 base=Path.home()/'Library/Application Support/CrossOver/HotS-Setup';control=base/'replay-control-native'
 def key(command):subprocess.run([str(control),str(a.pid),command],check=True,stdout=subprocess.DEVNULL)
+def inspect():return json.loads(subprocess.check_output([str(base/'inspect-replay'),str(a.pid),str(base/'warmup-current.png')],text=True))
+first=inspect()['clock'];time.sleep(2);second=inspect()['clock']
 for _ in range(a.speed_steps):key('faster')
-key('pause')
+if first==second:key('pause')
 camera=subprocess.Popen([str(control),str(a.pid),'hold-center','180'],stdout=subprocess.DEVNULL)
 end=time.monotonic()+300
 try:
