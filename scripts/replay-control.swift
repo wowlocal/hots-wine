@@ -8,7 +8,7 @@ guard CommandLine.arguments.count >= 3, let pid = Int32(CommandLine.arguments[1]
       let app = NSRunningApplication(processIdentifier: pid),
       app.localizedName == "HeroesOfTheStorm_x64.exe" else { fatalError("Expected the Wine HotS PID") }
 let command = CommandLine.arguments[2]
-guard ["camera", "center", "follow", "seek", "hud", "timeline", "pause", "faster", "slower", "restart", "back", "next"].contains(command) else { fatalError("Unsupported replay command") }
+guard ["camera", "center", "follow", "hold-center", "seek", "hud", "timeline", "pause", "faster", "slower", "restart", "back", "next"].contains(command) else { fatalError("Unsupported replay command") }
 guard CGPreflightPostEventAccess() else { fatalError("Event posting is unavailable; no input sent") }
 let windows = CGWindowListCopyWindowInfo([.optionAll, .excludeDesktopElements], kCGNullWindowID) as? [[String: Any]] ?? []
 guard let window = windows.first(where: {
@@ -35,6 +35,14 @@ func key(_ code: CGKeyCode, flags: CGEventFlags = []) {
 }
 if command == "camera" { key(23); key(8) } // Observe player5, then follow player camera.
 if command == "center" { key(23); key(49) }
+if command == "hold-center" {
+    guard CommandLine.arguments.count == 4, let seconds=Double(CommandLine.arguments[3]), seconds>0,seconds<=180 else {exit(2)}
+    checkFocus()
+    let down=CGEvent(keyboardEventSource:nil,virtualKey:49,keyDown:true);down?.flags=[];down?.post(tap:.cghidEventTap)
+    let end=ProcessInfo.processInfo.systemUptime+seconds
+    while ProcessInfo.processInfo.systemUptime<end && NSWorkspace.shared.frontmostApplication?.processIdentifier==pid {Thread.sleep(forTimeInterval:0.1)}
+    let up=CGEvent(keyboardEventSource:nil,virtualKey:49,keyDown:false);up?.flags=[];up?.post(tap:.cghidEventTap)
+}
 func chord(_ modifier: CGKeyCode, _ flags: CGEventFlags, _ code: CGKeyCode) {
     let down = CGEvent(keyboardEventSource:nil, virtualKey:modifier, keyDown:true)
     down?.flags=flags;down?.post(tap:.cghidEventTap)

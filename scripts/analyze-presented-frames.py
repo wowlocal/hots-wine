@@ -17,6 +17,7 @@ parser.add_argument('--trim-end', type=float, default=0)
 parser.add_argument('--actual-presentation-time', action='store_true',
                     help='Use deduplicated status2 at-time values, corrected for the verified Instruments timebase conversion.')
 parser.add_argument('--timebase', default='125/3', help='mach timebase numer/denom from this trace; required for the corrected at-time mode')
+parser.add_argument('--foreground-log',type=Path)
 args = parser.parse_args()
 root = ET.parse(args.xml).getroot()
 definitions = {e.attrib['id']: e for e in root.iter() if 'id' in e.attrib}
@@ -43,11 +44,18 @@ def pid(e):
 frames = []
 schema = root.find('.//schema').attrib['name']
 display_swaps = schema == 'displayed-surfaces-interval'
-if schema not in ('displayed-surfaces-interval', 'ca-client-presented-handler'):
+raw_swaps = schema == 'display-surface-swap'
+if raw_swaps:
+    if not args.foreground_log:
+        raise SystemExit('Global display swaps require a complete foreground log and a separately verified full-display game viewport.')
+    focus=[json.loads(l) for l in args.foreground_log.read_text().splitlines()]
+    if not focus or not all(f['active'] and f['expected_pid']==args.pid for f in focus):
+        raise SystemExit('Global display swap attribution rejected: game foreground was not continuous.')
+if schema not in ('displayed-surfaces-interval', 'ca-client-presented-handler','display-surface-swap'):
     raise SystemExit(f'Unsupported frame schema: {schema}')
 for row in root.iter('row'):
     owner = row[9] if display_swaps else row[-1]
-    if pid(owner) != args.pid:
+    if not raw_swaps and pid(owner) != args.pid:
         continue
     if args.actual_presentation_time:
         if display_swaps:
@@ -81,7 +89,8 @@ def percentile(p):
 
 worst = ordered[-max(1, math.ceil(len(ordered) * .01)):]
 result = dict(pid=args.pid, stage=args.stage, source=str(args.xml),
-              metric=('Displayed surface swap timestamps' if display_swaps else
+              metric=('Global compositor surface swaps; full-display foreground attribution must be verified' if raw_swaps else
+                      'Displayed surface swap timestamps' if display_swaps else
                       'Deduplicated Metal actual-presentation timestamps; verified timebase correction' if args.actual_presentation_time else
                       'CAMetalDrawable callback timestamps; includes coalesced callbacks, not display FPS'),
               schema=schema, trim_start_seconds=args.trim_start, trim_end_seconds=args.trim_end,
