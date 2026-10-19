@@ -1,0 +1,218 @@
+{
+  "date": "2026-10-19",
+  "hardware": {
+    "chip": "Apple M5 Max",
+    "cpu_cores": 18,
+    "gpu_cores": 40,
+    "memory_gb": 128
+  },
+  "os": "27.0.1",
+  "display": {
+    "points": [
+      1728,
+      1117
+    ],
+    "pixels": [
+      3456,
+      2234
+    ],
+    "nominal_max_hz": 120,
+    "mode_and_scaling_preserved": true,
+    "variable_refresh_independently_disabled": false
+  },
+  "runtime": {
+    "waypoint_commit": "5d1fa378d9574abd9ef59d475b735ccf1a195042",
+    "runtime_id": "heroes-6e73c5d76a37d655d497f70220c7c43e645e66c255b90529d33f79beacf9ab9a",
+    "dxmt": "0.80",
+    "paid_license_required": false
+  },
+  "game_settings": {
+    "creepQuality": "3",
+    "displaymode": "1",
+    "foliagequality": "3",
+    "frameratecap": "0",
+    "frameratecapGlue": "60",
+    "GraphicsOptionLightingQuality": "3",
+    "GraphicsOptionModelQuality": "2",
+    "GraphicsOptionOverallQualityVer7[21]": "3",
+    "GraphicsOptionPhysicsQuality": "2",
+    "GraphicsOptionShadowQuality": "3",
+    "GraphicsOptionTerrainQuality": "3",
+    "GraphicsOptionTextureQuality[2]": "3",
+    "height": "2234",
+    "highqualityframeblur": "true",
+    "highqualityhaloblurgame": "true",
+    "lowQualityMovies": "true",
+    "SoundQuality": "2",
+    "texQualityLevel": "3",
+    "vsync": "false",
+    "width": "3456",
+    "windowheight": "2234",
+    "windowstate": "3",
+    "windowwidth": "3456"
+  },
+  "producer_sha256": "bdf0a982ecc5e08c8936c27e84f32af22ebcde7b58bc17cec5934695e9d2710e",
+  "game_executable_sha256_before_and_after": "efdf5a2f13dfe4f66a63f525f4d4ae3c953064232c60da74b4e6540aa534dca9",
+  "replay_sha256": "4fb9bf56d6b1a3a177843cba04ac7dca115de634e9d6b052cf16cc53cfba3f9d",
+  "collection": {
+    "sample_seconds": 25,
+    "window": "+3..+28seconds after play-command completion",
+    "foreground": "250ms main runloop plus activation notifications; <=350ms maxgap",
+    "no_screenshots_or_heavy_profiler_during_sample": true,
+    "normal_playback": true,
+    "native_mach_timebase": {
+      "numer": 125,
+      "denom": 3
+    },
+    "native_mach_clock_hz": 24000000
+  },
+  "launches": [
+    {
+      "launch": 1,
+      "msync": 1,
+      "selected_environment": {
+        "DXMT_CONFIG": "dxgi.customVendorId=1002;dxgi.customDeviceId=6810;d3d11.preferredMaxFrameRate=120;",
+        "MTL_HUD_ENABLED": "0",
+        "WINE_SIMULATE_WRITECOPY": "1",
+        "WINEDLLOVERRIDES": "winemenubuilder.exe=d;mscoree,mshtml=d;d3d11,dxgi,winemetal=b",
+        "WINEESYNC": "0",
+        "WINEMSYNC": "1"
+      },
+      "warm_start_hud": "-00:35",
+      "warm_paused_hud": "15:13",
+      "startup_acknowledged_msync": true,
+      "power_and_thermal_before": [
+        "Now drawing from 'AC Power'",
+        " -InternalBattery-0 (id=36307043)\t74%; charging; 2:23 remaining present: true",
+        "Note: No thermal warning level has been recorded",
+        "Note: No performance warning level has been recorded",
+        "Note: No CPU power status has been recorded"
+      ],
+      "private_ticket_clear_acknowledged": true,
+      "artifact_sha256": {
+        "frames/frames-6154.bin": "955c14c8283335a20fa32ce819636625260fdbc58bb1d05a0ae6145808099ec3",
+        "focus.jsonl": "4dda9a3d573d18e09c25b20baaa8e239fa5d97f7a3c3eae8763312108f690280",
+        "section-405/anchor.json": "f8a4e3c4444e15ac127b145babd72c1a04203f362b09b6a666bb33342232a7d7",
+        "section-795/anchor.json": "6547900b590ac2b6c0b7d1f8bef4228ead573e471ffec66c1ba37dc74d64ba22",
+        "section-885/anchor.json": "e5292dacb74ab13c331924c7bfe5b8ce022c27804344d0631cb6cc77b3bc8953"
+      }
+    },
+    {
+      "launch": 2,
+      "msync": 0,
+      "selected_environment": {
+        "DXMT_CONFIG": "dxgi.customVendorId=1002;dxgi.customDeviceId=6810;d3d11.preferredMaxFrameRate=120;",
+        "MTL_HUD_ENABLED": "0",
+        "WINE_SIMULATE_WRITECOPY": "1",
+        "WINEDLLOVERRIDES": "winemenubuilder.exe=d;mscoree,mshtml=d;d3d11,dxgi,winemetal=b",
+        "WINEESYNC": "0",
+        "WINEMSYNC": "0"
+      },
+      "warm_start_hud": "-00:23",
+      "warm_paused_hud": "15:12",
+      "startup_acknowledged_msync": false,
+      "power_and_thermal_before": [
+        "Now drawing from 'AC Power'",
+        " -InternalBattery-0 (id=36307043)\t74%; charging; 2:52 remaining present: true",
+        "Note: No thermal warning level has been recorded",
+        "Note: No performance warning level has been recorded",
+        "Note: No CPU power status has been recorded"
+      ],
+      "private_ticket_clear_acknowledged": true,
+      "artifact_sha256": {
+        "frames/frames-7408.bin": "fc05142fd54050a2392be4b826025b4f69db8c2790b3f98b02ac7063748a0e80",
+        "focus.jsonl": "b47bf6369aa4cc70007faf2bd5e7ed32ccb057e1a5e696f252ea23956abddccb",
+        "section-405/anchor.json": "a9adf4d83bc7eccde81889f79581a84f17f64e25dbcd62f23c3a4032f008f33d",
+        "section-795/anchor.json": "c9ebc140503cdd4a5a80f45552aa2bfbe45ed73ef863954a3d5ad6ed11fa1a4a",
+        "section-885/anchor.json": "d6e6ebb8e4eec39cacb96fece6ebe0b212976b475c2d955a48dcee385fc2a477"
+      }
+    },
+    {
+      "launch": 3,
+      "msync": 0,
+      "selected_environment": {
+        "DXMT_CONFIG": "dxgi.customVendorId=1002;dxgi.customDeviceId=6810;d3d11.preferredMaxFrameRate=120;",
+        "MTL_HUD_ENABLED": "0",
+        "WINE_SIMULATE_WRITECOPY": "1",
+        "WINEDLLOVERRIDES": "winemenubuilder.exe=d;mscoree,mshtml=d;d3d11,dxgi,winemetal=b",
+        "WINEESYNC": "0",
+        "WINEMSYNC": "0"
+      },
+      "warm_start_hud": "-00:23",
+      "warm_paused_hud": "15:13",
+      "startup_acknowledged_msync": false,
+      "power_and_thermal_before": [
+        "Now drawing from 'AC Power'",
+        " -InternalBattery-0 (id=36307043)\t75%; charging; 3:03 remaining present: true",
+        "Note: No thermal warning level has been recorded",
+        "Note: No performance warning level has been recorded",
+        "Note: No CPU power status has been recorded"
+      ],
+      "private_ticket_clear_acknowledged": true,
+      "artifact_sha256": {
+        "frames/frames-9437.bin": "71fcc31800f6f5892369155a473ef7332ec366a39ff9cbccdaa497a0292004c8",
+        "focus.jsonl": "2df8607019cc2354ad744426bd785b39746063e01fcdb77dec34ffd909ce4243",
+        "section-405/anchor.json": "1fb3c47b143734231ceb53c647011e8d795c2e4ddaeaddae3cec82e0fd4666f5",
+        "section-795/anchor.json": "6a8e44650343ec47dcddccc03933d58ba6838e7dc2ede8239d0afa20367fd2d7",
+        "section-885/anchor.json": "44cb77abbce306250207645fd13db8f6ce9fc78abafb7cb5b7ddb8932a3690d7"
+      }
+    },
+    {
+      "launch": 4,
+      "msync": 1,
+      "selected_environment": {
+        "DXMT_CONFIG": "dxgi.customVendorId=1002;dxgi.customDeviceId=6810;d3d11.preferredMaxFrameRate=120;",
+        "MTL_HUD_ENABLED": "0",
+        "WINE_SIMULATE_WRITECOPY": "1",
+        "WINEDLLOVERRIDES": "winemenubuilder.exe=d;mscoree,mshtml=d;d3d11,dxgi,winemetal=b",
+        "WINEESYNC": "0",
+        "WINEMSYNC": "1"
+      },
+      "warm_start_hud": "-00:35",
+      "warm_paused_hud": "15:13",
+      "startup_acknowledged_msync": true,
+      "power_and_thermal_before": [
+        "Now drawing from 'AC Power'",
+        " -InternalBattery-0 (id=36307043)\t75%; charging; 3:03 remaining present: true",
+        "Note: No thermal warning level has been recorded",
+        "Note: No performance warning level has been recorded",
+        "Note: No CPU power status has been recorded"
+      ],
+      "private_ticket_clear_acknowledged": true,
+      "artifact_sha256": {
+        "frames/frames-10427.bin": "836b93d0023bf3c256336c0964da94f19d3b9315445f929ec48cd6abb6d9e329",
+        "focus.jsonl": "aa569f4734ed765bc7592617888e8574929bc40fda37ed71d2cba6889044349e",
+        "section-405/anchor.json": "b30ea90427ff6919be849df1c404c387a5199c364983fa8edbf6977afa1c97ff",
+        "section-795/anchor.json": "612e5516cf3511806116296bef465218b6bfd2fdfc122a749bba0d8bd8ab51a2",
+        "section-885/anchor.json": "7616e7c49e9670f3f92e22301e949265ef3afc838bd4d46e1e1d77668bc46a0a"
+      }
+    }
+  ],
+  "limitations": [
+    "One ABBA block, two independent launches per mode; sections within a launch are dependent",
+    "120cap masks uncapped headroom; no fullmatch or coldcache qualification",
+    "No continuous power/thermal telemetry",
+    "First two on-mode camera helper exit statuses not retained; centered Kerrigan endpoints manually verified",
+    "Actual replay phase only aligned to integer HUD seconds, not a frame number"
+  ],
+  "cleanup": {
+    "all_owned_games_exited": true,
+    "private_working_prefix_removed": true,
+    "private_baseline_prefix_removed": true,
+    "production_configuration_changed": false,
+    "global_windows_launch_lease_released": true
+  },
+  "baseline_variables_sha256_before_and_after": "81b6b942d09746529607408a53879b5b6448b500b69ff0d46f352e3983f3366d",
+  "sync_environment": {
+    "game": {
+      "WINEESYNC": "0",
+      "WINEFSYNC": "unset",
+      "WINEMSYNC": "per launch"
+    },
+    "bootstrap_and_control_helpers": {
+      "WINEESYNC": "0",
+      "WINEFSYNC": "0",
+      "WINEMSYNC": "per launch"
+    }
+  }
+}

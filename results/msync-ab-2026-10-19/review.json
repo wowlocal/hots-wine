@@ -1,0 +1,45 @@
+{
+  "reviews": [
+    {
+      "scope": "protocol",
+      "actual_model": "claude-opus-5-5",
+      "requested_effort": "xhigh",
+      "successful": true,
+      "response_sha256": "cf2609b8af990695a495c2ad4d80cc248f905184e566058a9388fea624e64b81"
+    },
+    {
+      "scope": "control",
+      "actual_model": "claude-opus-5-5",
+      "requested_effort": "xhigh",
+      "successful": true,
+      "response_sha256": "5a3d64966fb1cdd5df1c06273e26c462f245520099f74a8eb28b6a41aa043d49"
+    },
+    {
+      "scope": "preliminary_results",
+      "actual_model": "claude-opus-5-5",
+      "requested_effort": "xhigh",
+      "successful": true,
+      "response_sha256": "b58217a942d42554993192b403666232be4236814a5c4c3303cfdadb7fee8e06"
+    },
+    {
+      "scope": "summary_code_and_final_table",
+      "actual_model": "claude-opus-5-5",
+      "requested_effort": "xhigh",
+      "successful": true,
+      "response_sha256": "8a83750df5ae09ebcb386b204c0b030c5284024da745c204daa2dbca78904a26"
+    }
+  ],
+  "resolved_findings": [
+    "Require replay advancement and stable pause; wait for replay readiness after authentication",
+    "Use timed Wine play/pause after coarse seeking; verify reset starts in pregame countdown",
+    "Require camera helper exit0 for later captures; first2 capture endpoints manually checked",
+    "Recompute summary arithmetic from12 publicCSV files and preserve launch-level replication",
+    "Reconstruct threshold counts on native24MHz clock to remove 25.000000125ms floating-point artifacts",
+    "Expose per-launch long-interval counts and the final enabled-mode bad13:15 section"
+  ],
+  "remaining_limits": [
+    "Only two independent launches per mode",
+    "Variable refresh preserved;120cap masks headroom",
+    "No continuous temperature/frequency trace"
+  ]
+}

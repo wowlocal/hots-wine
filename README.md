@@ -1,6 +1,6 @@
 # Heroes of the Storm through Wine on Apple Silicon
 
-Measured CrossOver configuration work for an M5 Max MacBook Pro (40 GPU cores, 128 GB memory).
+Wine configuration and performance measurements for an M5 Max MacBook Pro (40 GPU cores, 128 GB memory).
 
 Target: **3456 × 2234, Ultra, stable 120 FPS**, with native rendering and no generated frames. Acceptance criteria are in [configs/target.json](configs/target.json).
 
@@ -13,6 +13,12 @@ Its [foreground native Ultra measurement](docs/free-wine-fps.md) reports
 **119.96 FPS average, 116.13 FPS 1% low and one missed refresh in 25 seconds**.
 Uninterrupted 120 FPS remains unconfirmed. The historical CrossOver measurements
 below describe the older runtime.
+
+The newer [MSync comparison](docs/msync-ab-results.md) uses the free runtime from
+Waypoint 0.6.0: four launches in on/off/off/on order, three sections each.
+MSync enabled averaged **119.18 FPS**, versus **113.47 FPS** disabled, with fewer
+long frame intervals. One enabled-mode section still had a **58.49 FPS 1% low**;
+retain MSync enabled, but uninterrupted 120 FPS remains unconfirmed.
 
 ## Historical CrossOver status
 

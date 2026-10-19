@@ -1,5 +1,5 @@
 {
-  "status": "Launches1(on),2(off),3(off) complete and all9 samples qualified; final on launch awaiting foreground",
+  "status": "Complete: all four ABBA launches and all12 windows qualified",
   "order": [
     1,
     0,
@@ -15,7 +15,8 @@
   "producer_sha256": "bdf0a982ecc5e08c8936c27e84f32af22ebcde7b58bc17cec5934695e9d2710e",
   "runtime_id": "heroes-6e73c5d76a37d655d497f70220c7c43e645e66c255b90529d33f79beacf9ab9a",
   "waypoint_commit": "5d1fa378d9574abd9ef59d475b735ccf1a195042",
-  "completed_launches": 3,
-  "qualified_samples": 9,
-  "preliminary": "Both independent MSync-off launches have worse 1% lows in all3 sections than initial MSync-on launch. Final return-to-on control remains pending."
+  "completed_launches": 4,
+  "qualified_samples": 12,
+  "decision": "Retain MSync enabled. Both on launch averages exceed both off averages; the final on launch still has a bad13:15 section. Stable120 not confirmed.",
+  "uninterrupted_120_fps_confirmed": false
 }
