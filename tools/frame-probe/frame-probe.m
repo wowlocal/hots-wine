@@ -12,6 +12,8 @@
 #include <unistd.h>
 #include <time.h>
 #include <string.h>
+#include <pthread.h>
+#include <limits.h>
 
 typedef struct {
     char magic[8];
@@ -22,45 +24,57 @@ typedef struct {
     uint64_t start_mach;
     double start_wall;
     uint32_t pid, reserved;
+    _Atomic uint64_t acquired_count;
 } ProbeHeader;
 typedef struct {
     double presented_time;
     uint64_t callback_mach, drawable_id, acquired_mach;
     uint32_t width, height;
+    uint64_t layer_id;
+    _Atomic uint64_t committed;
 } ProbeRecord;
 
 static ProbeHeader *header;
 static ProbeRecord *records;
 static IMP original_next_drawable;
+static pthread_once_t log_once = PTHREAD_ONCE_INIT;
+static void initialize_log(void);
 
 static id probe_next_drawable(id layer, SEL selector) {
     id<CAMetalDrawable> drawable = ((id (*)(id, SEL))original_next_drawable)(layer, selector);
+    if (drawable) pthread_once(&log_once, initialize_log);
     if (drawable && header) {
         uint64_t acquired = mach_absolute_time();
         uint32_t width = (uint32_t)drawable.texture.width;
         uint32_t height = (uint32_t)drawable.texture.height;
+        uint64_t layer_id = (uint64_t)(uintptr_t)(__bridge void *)layer;
+        atomic_fetch_add_explicit(&header->acquired_count, 1, memory_order_relaxed);
         [drawable addPresentedHandler:^(id<MTLDrawable> shown) {
             uint64_t i = atomic_fetch_add_explicit(&header->count, 1, memory_order_relaxed);
             if (i < header->capacity) {
-                records[i] = (ProbeRecord){shown.presentedTime, mach_absolute_time(),
-                                          shown.drawableID, acquired, width, height};
+                ProbeRecord *record = &records[i];
+                record->presented_time = shown.presentedTime;
+                record->callback_mach = mach_absolute_time();
+                record->drawable_id = shown.drawableID;
+                record->acquired_mach = acquired;
+                record->width = width; record->height = height;
+                record->layer_id = layer_id;
+                atomic_store_explicit(&record->committed, i + 1, memory_order_release);
             }
         }];
     }
     return drawable;
 }
 
-__attribute__((constructor)) static void install_probe(void) {
-    const char *path = getenv("HOTS_FRAME_LOG");
-    if (!path || !*path) return;
-    char executable[4096]; uint32_t length = sizeof(executable);
-    if (_NSGetExecutablePath(executable, &length) != 0) return;
-    // Wine children inherit the environment; only the requested game owns this file.
-    const char *direct = getenv("HOTS_FRAME_PROBE_DIRECT");
-    if (!direct && !strstr(executable, "HeroesOfTheStorm_x64.exe")) return;
+static void initialize_log(void) {
+    const char *directory = getenv("HOTS_FRAME_LOG_DIR");
+    char local_path[PATH_MAX];
+    if (!directory || directory[0] != '/') return;
+    int length = snprintf(local_path, sizeof(local_path), "%s/frames-%d.bin", directory, getpid());
+    if (length <= 0 || (size_t)length >= sizeof(local_path)) return;
     uint64_t capacity = 1000000;
     size_t size = 4096 + capacity * sizeof(ProbeRecord);
-    int fd = open(path, O_RDWR | O_CREAT | O_TRUNC, 0600);
+    int fd = open(local_path, O_RDWR | O_CREAT | O_EXCL | O_NOFOLLOW, 0600);
     if (fd < 0 || ftruncate(fd, size) != 0) { if (fd >= 0) close(fd); return; }
     void *data = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
     close(fd);
@@ -69,12 +83,21 @@ __attribute__((constructor)) static void install_probe(void) {
     mach_timebase_info_data_t tb; mach_timebase_info(&tb);
     struct timespec now; clock_gettime(CLOCK_REALTIME, &now);
     memcpy(header->magic, "HOTSMTL1", 8);
-    header->version = 1; header->record_size = sizeof(ProbeRecord);
+    header->version = 3; header->record_size = sizeof(ProbeRecord);
     header->capacity = capacity; atomic_store(&header->count, 0);
+    atomic_store(&header->acquired_count, 0);
     header->timebase_numer = tb.numer; header->timebase_denom = tb.denom;
     header->start_mach = mach_absolute_time();
     header->start_wall = now.tv_sec + now.tv_nsec / 1e9; header->pid = getpid();
-    Method method = class_getInstanceMethod([CAMetalLayer class], @selector(nextDrawable));
-    original_next_drawable = method_setImplementation(method, (IMP)probe_next_drawable);
     fprintf(stderr, "HotS frame probe active: PID %d, record size %zu\n", getpid(), sizeof(ProbeRecord));
+}
+
+__attribute__((constructor)) static void install_probe(void) {
+    const char *directory = getenv("HOTS_FRAME_LOG_DIR");
+    if (!directory || directory[0] != '/') return;
+    Method method = class_getInstanceMethod([CAMetalLayer class], @selector(nextDrawable));
+    if (method) {
+        original_next_drawable = method_getImplementation(method);
+        method_setImplementation(method, (IMP)probe_next_drawable);
+    }
 }
