@@ -13,14 +13,20 @@ Do not launch Windows Battle.net or modify the production prefix.
 
 A discarded pilot validates the control/measurement path and warms shared
 shader caches. The first comparison block is on → off → off → on (ABBA).
-All launches traverse the replay to at least HUD 15:10 before testing, using
+All launches pause/reset the replay to its beginning, then traverse it to at
+least HUD 15:10 before testing, using
 8× for the initial traversal and returning to Normal before the end of the game.
 Record AC/thermal state and retain a fixed cooldown between launches. Preserve
 normal Retina display scaling and the current display mode. Since variable
 refresh is not independently disabled, report long presentation intervals as
 intervals, rather than claiming physical missed refreshes from a fixed rate.
 
-Prepare paused HUD clocks 06:45, 13:15 and 14:45. Select player 3 (Kerrigan),
+Preflight all three paused HUD clocks 06:45, 13:15 and 14:45 before collecting
+any timed sample in each launch, then prepare them again in collection order.
+Timeline clicks are coarse: use cached 10-second skips and timed play/pause
+inside the Wine helper for the last few seconds, and confirm the exact clock.
+Wait for the replay HUD after authentication; an unreadable clock during
+loading is not a failed performance measurement. Select player 3 (Kerrigan),
 center the pointer and hold Space to follow her. Verify the selected portrait,
 scene, exact paused HUD clock and Normal speed outside the sample. The timer in
 the replay panel differs from the HUD timer; use the HUD consistently.
