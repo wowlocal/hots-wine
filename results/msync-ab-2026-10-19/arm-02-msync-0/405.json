@@ -1,0 +1,44 @@
+{
+  "pid": 7408,
+  "metric": "MTLDrawable.presentedTime, actual onscreen host time",
+  "fixed_host_ns_window": [
+    596063311129583,
+    596088311129583
+  ],
+  "sample_seconds": 25.0,
+  "timebase": "1/1",
+  "drawable_sizes": {
+    "3456x2234": 2906
+  },
+  "frame_count": 2906,
+  "onscreen_layer_count": 1,
+  "acquired_drawables": 107373,
+  "handled_drawables": 107369,
+  "foreground": {
+    "samples": 102,
+    "activation_events": 0,
+    "max_gap_ms": 252.3555
+  },
+  "average_fps": 116.24,
+  "one_percent_low_fps": 59.9999348700707,
+  "p50_ms": 8.33333325,
+  "p95_ms": 8.333375125,
+  "p99_ms": 16.666666625,
+  "max_ms": 16.66675,
+  "missed_refresh_intervals": 94,
+  "cadence_120_fraction": 0.9676642586859305,
+  "frames_over_25_ms": 0,
+  "frames_over_33_3_ms": 0,
+  "frames_over_50_ms": 0,
+  "interval_policy": "Complete intervals intersecting a fixed window; includes boundary stalls",
+  "numeric_120_rule": ">=20s,119.5..120.5avg,1%low>=115,p99<=9ms,max<=12.5ms,>=99.9% intervals within8.333+/-0.2ms",
+  "numeric_120_pass": false,
+  "msync": 0,
+  "prepared_hud_clock": "06:45",
+  "paused_after_hud_clock": "07:16",
+  "replay_progression_valid": true,
+  "paused_after_clock_stable": true,
+  "camera_helper_exit_status": 0,
+  "camera": "player3 Kerrigan, Space held",
+  "role": "ABBA launch2 of4"
+}

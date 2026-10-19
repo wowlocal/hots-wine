@@ -1,5 +1,5 @@
 {
-  "status": "MSync on launch1 complete and all3 samples qualified; waiting for foreground of launch2 with MSync off",
+  "status": "Launches1(on) and2(off) complete, all6 samples qualified; launch3(off) in progress",
   "order": [
     1,
     0,
@@ -15,6 +15,7 @@
   "producer_sha256": "bdf0a982ecc5e08c8936c27e84f32af22ebcde7b58bc17cec5934695e9d2710e",
   "runtime_id": "heroes-6e73c5d76a37d655d497f70220c7c43e645e66c255b90529d33f79beacf9ab9a",
   "waypoint_commit": "5d1fa378d9574abd9ef59d475b735ccf1a195042",
-  "completed_launches": 1,
-  "qualified_samples": 3
+  "completed_launches": 2,
+  "qualified_samples": 6,
+  "preliminary": "MSync off has lower average FPS and 1% lows in all3 paired sections. Independent repeats remain pending."
 }
