@@ -41,6 +41,9 @@ extract pristine Wine, apply the patch noninteractively with `-f`, and verify
 the resulting `class.c` hash. Stage-only packaging rejects changed input pins
 or source hashes before modifying the source tree. Both rejection cases and
 successful stage-only packaging were exercised.
+The final activation revision at `2fc2e81` received another Opus 5.5 xhigh
+review, with no blocking correctness finding. Its manual Play and focus cases
+remain part of the verification limits below.
 
 ## Local qualification, 19 October 2026
 
