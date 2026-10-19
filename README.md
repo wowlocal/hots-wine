@@ -4,8 +4,10 @@ Measured CrossOver configuration work for an M5 Max MacBook Pro (40 GPU cores, 1
 
 Target: **3456 × 2234, Ultra, stable 120 FPS**, with native rendering and no generated frames. Acceptance criteria are in [configs/target.json](configs/target.json).
 
-Free native-launch integration is available as a local Waypoint preview using a
-source-built Wine engine and public DXMT, without a CrossOver license. See the
+Free native-launch integration ships in [Waypoint 0.5.0](https://github.com/wowlocal/waypoint-launcher/releases/tag/v0.5.0),
+using source-built Wine and public DXMT, without a CrossOver license. The signed,
+notarized app is approximately **3.8 MiB** compressed; Windows support downloads
+on the first Windows HotS Play (**90 MiB**) and stays cached. See the
 [implementation and qualification checkpoints](docs/free-waypoint-integration.md).
 Its [foreground native Ultra measurement](docs/free-wine-fps.md) reports
 **119.96 FPS average, 116.13 FPS 1% low and one missed refresh in 25 seconds**.
