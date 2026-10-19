@@ -1,0 +1,18 @@
+{
+  "status": "awaiting first ABBA game foreground; no on/off results yet",
+  "order": [
+    1,
+    0,
+    0,
+    1
+  ],
+  "sections_hud": [
+    "06:45",
+    "13:15",
+    "14:45"
+  ],
+  "sample_seconds": 25,
+  "producer_sha256": "bdf0a982ecc5e08c8936c27e84f32af22ebcde7b58bc17cec5934695e9d2710e",
+  "runtime_id": "heroes-6e73c5d76a37d655d497f70220c7c43e645e66c255b90529d33f79beacf9ab9a",
+  "waypoint_commit": "5d1fa378d9574abd9ef59d475b735ccf1a195042"
+}

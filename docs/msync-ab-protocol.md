@@ -13,7 +13,8 @@ Do not launch Windows Battle.net or modify the production prefix.
 
 A discarded pilot validates the control/measurement path and warms shared
 shader caches. The first comparison block is on → off → off → on (ABBA).
-All launches traverse the replay to at least HUD 15:10 at 8× before testing.
+All launches traverse the replay to at least HUD 15:10 before testing, using
+8× for the initial traversal and returning to Normal before the end of the game.
 Record AC/thermal state and retain a fixed cooldown between launches. Preserve
 normal Retina display scaling and the current display mode. Since variable
 refresh is not independently disabled, report long presentation intervals as
@@ -31,8 +32,9 @@ command. Measure the fixed host-clock interval +3 to +28 seconds. Do not run
 screenshots, OCR, a trace profiler or seek controls inside that interval.
 Use the existing calibrated v3 MTLDrawable.presentedTime recorder. Analyze only
 after the game exits, with the existing strict native-drawable, single-layer,
-continuous-foreground and monotonic-window validation. Keep all failed attempts
-and reasons; never trim a stall out of a sample. Abort on loss of foreground.
+continuous-foreground and monotonic-window validation. Require a 29–33 second advancement of the HUD clock and a stable paused
+clock after recording, so a dropped play command cannot qualify a paused scene.
+Keep all failed attempts and reasons; never trim a stall out of a sample. Abort on loss of foreground.
 
 Report each section and independent launch separately: average FPS, 1% low,
 p99, worst interval, intervals >12.5/25/50 ms, and strict 120-rule status.
