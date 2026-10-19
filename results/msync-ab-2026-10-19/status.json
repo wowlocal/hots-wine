@@ -1,5 +1,5 @@
 {
-  "status": "ABBA running with readiness and exact-alignment corrections; no paired results yet",
+  "status": "MSync on launch1 complete and all3 samples qualified; waiting for foreground of launch2 with MSync off",
   "order": [
     1,
     0,
@@ -14,5 +14,7 @@
   "sample_seconds": 25,
   "producer_sha256": "bdf0a982ecc5e08c8936c27e84f32af22ebcde7b58bc17cec5934695e9d2710e",
   "runtime_id": "heroes-6e73c5d76a37d655d497f70220c7c43e645e66c255b90529d33f79beacf9ab9a",
-  "waypoint_commit": "5d1fa378d9574abd9ef59d475b735ccf1a195042"
+  "waypoint_commit": "5d1fa378d9574abd9ef59d475b735ccf1a195042",
+  "completed_launches": 1,
+  "qualified_samples": 3
 }
