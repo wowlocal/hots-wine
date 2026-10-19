@@ -1,0 +1,33 @@
+{
+  "pid": 75238,
+  "metric": "MTLDrawable.presentedTime, actual onscreen host time",
+  "fixed_host_ns_window": [
+    567988395436583,
+    568013395436583
+  ],
+  "sample_seconds": 25.0,
+  "timebase": "1/1",
+  "drawable_sizes": {
+    "3456x2234": 3000
+  },
+  "frame_count": 3000,
+  "foreground": {
+    "samples": 102,
+    "activation_events": 0,
+    "max_gap_ms": 251.813542
+  },
+  "average_fps": 120.0,
+  "one_percent_low_fps": 119.99879991522762,
+  "p50_ms": 8.33333325,
+  "p95_ms": 8.333375,
+  "p99_ms": 8.333416625,
+  "max_ms": 8.33341675,
+  "missed_refresh_intervals": 0,
+  "cadence_120_fraction": 1.0,
+  "frames_over_25_ms": 0,
+  "frames_over_33_3_ms": 0,
+  "frames_over_50_ms": 0,
+  "interval_policy": "Complete intervals intersecting a fixed window; includes boundary stalls",
+  "numeric_120_rule": ">=20s,119.5..120.5avg,1%low>=115,p99<=9ms,max<=12.5ms,>=99.9% intervals within8.333+/-0.2ms",
+  "numeric_120_pass": true
+}

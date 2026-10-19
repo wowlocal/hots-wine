@@ -1,0 +1,116 @@
+{
+  "date": "2026-10-19",
+  "hardware": {
+    "chip": "Apple M5 Max",
+    "cpu_cores": 18,
+    "gpu_cores": 40,
+    "memory_gb": 128
+  },
+  "display_and_post_run_os": {
+    "height_points": 1117,
+    "os": "Version 27.0.1 (Build 26A434)",
+    "pixel_height": 2234,
+    "pixel_width": 3456,
+    "refresh_hz": 120,
+    "thermal_state_after_run": 0,
+    "width_points": 1728
+  },
+  "power": {
+    "source": "AC",
+    "powermode": 0,
+    "name": "Automatic",
+    "continuous_telemetry": false
+  },
+  "runtime": {
+    "waypoint_launcher_commit": "2fc2e81",
+    "clean_runtime_source_commit": "5b77f2d",
+    "wine_sources": "Wine built from CodeWeavers' CrossOver 26.3 LGPL source release",
+    "dxmt": "public 0.80",
+    "paid_license_required": false,
+    "msync": true,
+    "dxmt_config": "dxgi.customVendorId=1002;dxgi.customDeviceId=6810;d3d11.preferredMaxFrameRate=120;",
+    "metal_hud": false
+  },
+  "game_settings_after_run": {
+    "creepQuality": "3",
+    "displaymode": "1",
+    "foliagequality": "3",
+    "frameratecap": "0",
+    "frameratecapGlue": "60",
+    "GraphicsOptionLightingQuality": "3",
+    "GraphicsOptionModelQuality": "2",
+    "GraphicsOptionOverallQualityVer7[21]": "3",
+    "GraphicsOptionPhysicsQuality": "2",
+    "GraphicsOptionShadowQuality": "3",
+    "GraphicsOptionTerrainQuality": "3",
+    "GraphicsOptionTextureQuality[2]": "3",
+    "height": "2234",
+    "highqualityframeblur": "true",
+    "highqualityhaloblurgame": "true",
+    "lowQualityMovies": "true",
+    "SoundQuality": "2",
+    "texQualityLevel": "3",
+    "vsync": "false",
+    "width": "3456",
+    "windowheight": "2234",
+    "windowstate": "3",
+    "windowwidth": "3456"
+  },
+  "scene": {
+    "game_clock_before": "06:45",
+    "game_clock_after": "07:16",
+    "approximate_sample_clock": [
+      "06:48",
+      "07:13"
+    ],
+    "playback_speed": "Normal",
+    "camera": "living Kerrigan, camera-follow Space held",
+    "activity": "three-hero lane push; enemy-hero combat visible in post-sample image",
+    "warmed": true
+  },
+  "collection": {
+    "format_version": 3,
+    "sample_seconds": 25,
+    "sample_policy": "Exclusive anchor written before sample; +3 to +28 seconds after play-command completion",
+    "foreground_observer": "Main run loop, observed frontmost PID every 250 ms and activation notifications",
+    "heavy_trace_during_final_window": false,
+    "screenshots_during_final_window": false,
+    "tools_commit": "1b8700d",
+    "actual_input_sha256": {
+      "final_probe_binary": "bdf0a982ecc5e08c8936c27e84f32af22ebcde7b58bc17cec5934695e9d2710e",
+      "final_raw_frames": "b83957e1c88110dc7135b9e4768a6611b29d50090af37ea10c7f78df29c1b308",
+      "final_focus_log": "70c5b3ee9b0ac80f2df745b0def1858367cc474ac46d6f2dbddee4d5693e0044",
+      "predeclared_anchor": "6eb7bfce8117503480126f257ba4aac29b869f00dff3450058ef315bcbcc5bea"
+    },
+    "trusted_local_collector": true,
+    "callback_accounting": {
+      "acquired_process_total": 29335,
+      "reserved_handlers_process_total": 29331,
+      "uncommitted_records": 0,
+      "acquisitions_without_handler_record": 4,
+      "missing_handler_acquisition_times_known": false,
+      "zero_presented_time_process_total": 20896,
+      "zero_time_acquisitions_in_fixed_window": 0,
+      "zero_time_callbacks_in_fixed_window": 0
+    }
+  },
+  "scope": {
+    "full_match": false,
+    "three_qualified_fight_sections": false,
+    "cold_shader_cache": false,
+    "uninterrupted_120_fps_confirmed": false,
+    "final_numeric_rule_pass": false,
+    "preliminary_v2_samples_are_acceptance": false,
+    "calibration_is_combat_acceptance": false,
+    "calibration_is_simultaneous_with_final_v3": false,
+    "sample_proven_to_be_demanding_fight": false
+  },
+  "cleanup": {
+    "owned_game_exited": true,
+    "session_cleanup_completed": true,
+    "ticket_probe_exit": 3,
+    "ticket_probe_status": "missing-token",
+    "original_battle_net_preserved": true,
+    "stable_waypoint_preserved": true
+  }
+}

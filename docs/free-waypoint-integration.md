@@ -5,7 +5,7 @@ The earlier benchmark profiles and command launcher in this repository still
 describe CrossOver-based experiments. Their frame-rate measurements do not
 qualify the new free engine.
 
-The new engine is compiled from CodeWeavers' published LGPL Wine 26.3 sources,
+The new engine compiles Wine from CodeWeavers' CrossOver 26.3 LGPL source release,
 with public MIT DXMT 0.80 and supplementary FOSS dylibs. It does not use the
 installed CrossOver application, its license data, bundled DXMT or D3DMetal.
 Wine is a compatibility layer; a Windows VM is not required.
@@ -70,13 +70,16 @@ Developer ID team `H8QG3CBM96`. Apple accepted notarization submission
 `4806d7e7-4eb0-4e92-b60d-222c91d0a721`; stapling, strict signature verification
 and Gatekeeper assessment passed.
 
-There is **no valid FPS acceptance result for this free engine yet**. The
-CLI-started replay stayed behind the terminal; foreground monitoring rejected
-that measurement. Its FPS cannot establish gameplay performance. Earlier
-CrossOver results do not carry over, and solid 120 FPS at native resolution
-and Ultra is not claimed. The new launcher reveals the game only while the
-user is still in Waypoint; that activation path compiles but still needs an
-actual user Play check.
+The free engine now has a valid foreground, single-layer FPS measurement at
+native resolution and Ultra: **119.96 FPS average, 116.13 FPS 1% low**, with
+**one missed refresh in 25 seconds** and a **16.67 ms** longest interval.
+Uninterrupted 120 FPS remains unconfirmed. See the
+[measurement report and data](free-wine-fps.md) for the exact scene and limits.
+Earlier CrossOver results do not carry over. Initial background captures were
+rejected; the final test followed an explicit user focus action and continuous
+foreground observation. The new launcher reveals the game only while the
+user is still in Waypoint; the manual Play activation path still needs an
+actual user check.
 
 The staged runtime is approximately **314 MB** before compression; the signed
 preview app archive is approximately **96 MiB**. Players require Apple silicon,
