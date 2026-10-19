@@ -1,0 +1,129 @@
+{
+  "scope": "Longest isolated hitch in targeted profiler window; frequent early bad state was not reproduced",
+  "native_display_crosscheck": {
+    "valid": true,
+    "max_probe_to_swap_error_ns": 167.5,
+    "max_swap_to_probe_error_ns": 167.5,
+    "probe_frames": 2993,
+    "display_swaps": 2993,
+    "display": "Built-In Display",
+    "method": "Absolute mach epoch, both directions, no fitted offset or rate"
+  },
+  "longest_present_interval_ms": 58.33325,
+  "longest_interval_end_seconds_in_window": 24.594963125,
+  "shown_drawable_return_gap_ms": 76.357792,
+  "post_next_drawable_to_present_ms": 13.244625,
+  "cpu_present_request_gap_ms": 76.20649999999785,
+  "prior_presenting_buffer_completion_to_next_present_request_ms": 71.37845799999809,
+  "next_drawable_wait_intervals_overlapping_return_gap": 0,
+  "max_next_drawable_wait_ms_in_fixed_window": 7.212208,
+  "running_sample_comparison": {
+    "adjacent-before": {
+      "seconds": 0.07635779199999959,
+      "running_timer_samples": {
+        "other": 25,
+        "play-main": 39,
+        "dxmt-encode": 25,
+        "dominant-anonymous-thread": 26
+      },
+      "total_running_timer_samples": 115,
+      "max_sample_time_gap_ms": 3.9999579999978607
+    },
+    "return-gap": {
+      "seconds": 0.07635779199999959,
+      "running_timer_samples": {
+        "dominant-anonymous-thread": 69,
+        "other": 6,
+        "play-main": 5,
+        "dxmt-encode": 2
+      },
+      "total_running_timer_samples": 82,
+      "max_sample_time_gap_ms": 1.9998329999992848
+    },
+    "adjacent-after": {
+      "seconds": 0.07635779199999959,
+      "running_timer_samples": {
+        "dominant-anonymous-thread": 8,
+        "play-main": 71,
+        "other": 28,
+        "dxmt-encode": 28
+      },
+      "total_running_timer_samples": 135,
+      "max_sample_time_gap_ms": 1.0019999999997253
+    }
+  },
+  "sample_selection": "Equal-duration adjacent windows around the return gap; dominant anonymous thread selected by its gap sample count. No significance test; after window includes recovery.",
+  "thermal_intervals": [
+    {
+      "start_seconds_in_trace": 0.0,
+      "duration_seconds": 46.047636985,
+      "state": "Nominal"
+    }
+  ],
+  "instrumented_compiler_events_in_window": 5,
+  "instrumented_game_compiler_events_in_window": 0,
+  "cpu_export": {
+    "time_profile": "xctrace export crashed with SIGTRAP",
+    "time_sample": "65956 raw rows exported; function-level stacks unresolved",
+    "scheduler_trace": false
+  },
+  "interpretation": "The isolated traced hitch contains an upstream gap in requests for new frames, with running samples shifting to an anonymous thread. No causal attribution to MSync, shader compilation, scheduling, or GPU saturation.",
+  "limits": [
+    "Trace-only isolated hitches, clean light brackets; profiler effect and intermittency are confounded",
+    "No continuous scheduler/waker or core-placement data",
+    "Completion notifications do not measure GPU execution spans",
+    "No game compiler event does not exclude DXMT conversion or uninstrumented compilation",
+    "Coarse thermal state does not establish GPU/CPU frequencies",
+    "Upstream present gaps can include waits on non-presenting GPU work or synchronization/fence events"
+  ],
+  "source_xml_sha256": {
+    "time-info": "e5befff0b5ea64fbdb1ddcaaf312709e8e5181e9cc5df634b4a438c4d7f78c3e",
+    "time-sample": "040508398a5117a8821a8afb7c7cd782fcf2fd9d77ee3f5741edb51e17e6332b",
+    "ca-client-buffer-wait-interval": "9950b51460d56eac2d768939c554132e31b517d4513fdfb5cb352bdca72768ad",
+    "ca-client-present-request": "9ca651817eebef11beb3eb760cb5a5c9d8a9fd083ee8d7831c62febe23394063",
+    "metal-command-buffer-completed": "a9b633bb396911d8bee041229a333889e1a3e859f682fd8706228e463c756276",
+    "device-thermal-state-intervals": "a72b5bfcdab9984f2d2a511947802badbb460bbfc24f49fb1d84aefd812876c0",
+    "graphics-compiler-activity-intervals": "e814f9b3176884e7753798cfcfd3df6f137526a71d51467bb2c13c482c9e4d2e"
+  },
+  "previous_post_next_drawable_to_present_ms": 31.269167,
+  "observed_unpresented_records_in_acquisition_span": 0,
+  "compiler_events_in_window": [
+    {
+      "process": "ControlCenter",
+      "start_seconds_in_trace": 17.915426041,
+      "duration_seconds": 5.2084e-05
+    },
+    {
+      "process": "ControlCenter",
+      "start_seconds_in_trace": 17.915597666,
+      "duration_seconds": 2.6167e-05
+    },
+    {
+      "process": "ControlCenter",
+      "start_seconds_in_trace": 17.915672,
+      "duration_seconds": 1.9041e-05
+    },
+    {
+      "process": "ControlCenter",
+      "start_seconds_in_trace": 17.915735708,
+      "duration_seconds": 1.825e-05
+    },
+    {
+      "process": "ControlCenter",
+      "start_seconds_in_trace": 17.915798708,
+      "duration_seconds": 1.65e-05
+    }
+  ],
+  "compiler_events_overlapping_return_gap": 0,
+  "comparison_rule": {
+    "timing": "Recorded after capture, before deriving new frame metrics",
+    "traced_excess": "trace > max(before,after) + abs(before-after)",
+    "long_interval_threshold_ms": 12.5,
+    "counts": {
+      "before": 0,
+      "trace": 2,
+      "after": 0
+    },
+    "limitation": "Descriptive, not a significance test; profiler effects and intermittency confounded"
+  }
+}

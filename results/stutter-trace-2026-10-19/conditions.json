@@ -1,0 +1,88 @@
+{
+  "date": "2026-10-19",
+  "hardware": {
+    "chip": "Apple M5 Max",
+    "cpu_cores": 18,
+    "gpu_cores": 40,
+    "memory_gb": 128
+  },
+  "os": "27.0.1",
+  "display": {
+    "points": [
+      1728,
+      1117
+    ],
+    "pixels": [
+      3456,
+      2234
+    ],
+    "nominal_max_hz": 120,
+    "mode_and_scaling_preserved": true,
+    "variable_refresh_independently_disabled": false
+  },
+  "runtime": {
+    "waypoint_commit": "5d1fa378d9574abd9ef59d475b735ccf1a195042",
+    "runtime_id": "heroes-6e73c5d76a37d655d497f70220c7c43e645e66c255b90529d33f79beacf9ab9a",
+    "dxmt": "0.80",
+    "paid_license_required": false
+  },
+  "game_settings": {
+    "creepQuality": "3",
+    "displaymode": "1",
+    "foliagequality": "3",
+    "frameratecap": "0",
+    "frameratecapGlue": "60",
+    "GraphicsOptionLightingQuality": "3",
+    "GraphicsOptionModelQuality": "2",
+    "GraphicsOptionOverallQualityVer7[21]": "3",
+    "GraphicsOptionPhysicsQuality": "2",
+    "GraphicsOptionShadowQuality": "3",
+    "GraphicsOptionTerrainQuality": "3",
+    "GraphicsOptionTextureQuality[2]": "3",
+    "height": "2234",
+    "highqualityframeblur": "true",
+    "highqualityhaloblurgame": "true",
+    "lowQualityMovies": "true",
+    "SoundQuality": "2",
+    "texQualityLevel": "3",
+    "vsync": "false",
+    "width": "3456",
+    "windowheight": "2234",
+    "windowstate": "3",
+    "windowwidth": "3456"
+  },
+  "producer_sha256": "bdf0a982ecc5e08c8936c27e84f32af22ebcde7b58bc17cec5934695e9d2710e",
+  "sync_environment": {
+    "game": {
+      "WINEESYNC": "0",
+      "WINEFSYNC": "unset",
+      "WINEMSYNC": "1"
+    },
+    "bootstrap_and_control_helpers": {
+      "WINEESYNC": "0",
+      "WINEFSYNC": "0",
+      "WINEMSYNC": "1"
+    }
+  },
+  "baseline_variables_sha256_before_and_after": "81b6b942d09746529607408a53879b5b6448b500b69ff0d46f352e3983f3366d",
+  "sample_seconds": 25,
+  "replay_anchor_seconds": 795,
+  "camera": "player3 Kerrigan, Space held, pointer centered",
+  "speed": "Normal",
+  "dxmt_cap": 120,
+  "controls": "Wine Win32 replay helper; no native UI automation",
+  "sampling": "fixed +3..+28 seconds after play-command completion",
+  "screenshots": "outside timed windows",
+  "production_configuration_changed": false,
+  "xcode": "27.1 (27A9275)",
+  "presentation_clock_hz": 24000000,
+  "replay_sha256": "4fb9bf56d6b1a3a177843cba04ac7dca115de634e9d6b052cf16cc53cfba3f9d",
+  "game_executable_sha256_after": "efdf5a2f13dfe4f66a63f525f4d4ae3c953064232c60da74b4e6540aa534dca9",
+  "cleanup": {
+    "games_exited": true,
+    "private_tickets_cleared": true,
+    "disposable_prefixes_removed": true,
+    "launch_lease_released": true,
+    "owned_caffeinate_ended": true
+  }
+}

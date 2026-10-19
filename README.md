@@ -20,6 +20,11 @@ MSync enabled averaged **119.18 FPS**, versus **113.47 FPS** disabled, with fewe
 long frame intervals. One enabled-mode section still had a **58.49 FPS 1% low**;
 retain MSync enabled, but uninterrupted 120 FPS remains unconfirmed.
 
+The [stutter tracing report](docs/stutter-trace-results.md) retains an initial
+94.44 FPS pass and later smooth controls. A targeted trace independently
+matches every displayed frame and localizes an isolated hitch to a gap in
+new-frame requests; the cause of the frequent early stutter remains unresolved.
+
 ## Historical CrossOver status
 
 The Windows game and Battle.net work in a dedicated CrossOver 26.3 bottle. Performance testing has finished. The target has **not** passed validation. Earlier reduced-quality, half-resolution and static-base samples do not establish target performance.

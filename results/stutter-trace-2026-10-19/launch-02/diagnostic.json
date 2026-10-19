@@ -1,0 +1,80 @@
+{
+  "sample_seconds": 25,
+  "frame_count": 2993,
+  "average_fps": 119.72,
+  "one_percent_low_fps": 97.29662664742764,
+  "p99_ms": 8.333375125,
+  "max_ms": 58.33325,
+  "presentation_intervals_over_12_5_ms": 2,
+  "fps_per_second": [
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    113
+  ],
+  "shown_drawable_acquisition_gaps_over_12_5_ms": 1,
+  "acquisition_reordering_count": 0,
+  "post_next_drawable_to_present_ms": {
+    "min": 9.2240835,
+    "median": 31.051042125,
+    "p99": 31.313373075,
+    "max": 31.4817915
+  },
+  "callback_after_present_p99_ms": 0.370256745,
+  "presentation_clock_hz": 24000000,
+  "max_presentation_clock_grid_error_ticks": 0.0078125,
+  "uncommitted_final_records_excluded": 0,
+  "observed_unpresented_records_in_acquisition_span": 0,
+  "interval_histogram_nominal_120_periods": {
+    "at_most_1_5": 2992,
+    "over_1_5_at_most_2_5": 1,
+    "over_2_5_at_most_3_5": 0,
+    "over_3_5": 1
+  },
+  "interval_policy": "Complete presentation intervals intersecting the fixed window, including boundaries",
+  "limitation": "Post-nextDrawable gaps are between shown drawables, not all acquisitions; no CPU/GPU/compositor cause attribution. Histogram uses a nominal 120 Hz period, not a verified fixed refresh rate.",
+  "qualification": {
+    "sample_seconds": 25.0,
+    "drawable_sizes": {
+      "3456x2234": 2993
+    },
+    "onscreen_layer_count": 1,
+    "foreground": {
+      "samples": 102,
+      "activation_events": 0,
+      "max_gap_ms": 250.450667
+    },
+    "numeric_120_pass": false
+  },
+  "collection_role": "targeted Time Profiler / Metal Application / Frame Lifetimes / Thermal State",
+  "display_crosscheck": {
+    "valid": true,
+    "max_probe_to_swap_error_ns": 167.5,
+    "max_swap_to_probe_error_ns": 167.5,
+    "probe_frames": 2993,
+    "display_swaps": 2993,
+    "display": "Built-In Display",
+    "method": "Absolute mach epoch, both directions, no fitted offset or rate"
+  }
+}

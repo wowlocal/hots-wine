@@ -1,0 +1,71 @@
+{
+  "sample_seconds": 25,
+  "frame_count": 2361,
+  "average_fps": 94.44,
+  "one_percent_low_fps": 54.33951485446799,
+  "p99_ms": 16.666708375,
+  "max_ms": 33.333375,
+  "presentation_intervals_over_12_5_ms": 634,
+  "fps_per_second": [
+    120,
+    120,
+    68,
+    65,
+    68,
+    64,
+    66,
+    65,
+    116,
+    120,
+    105,
+    64,
+    66,
+    71,
+    62,
+    63,
+    100,
+    120,
+    120,
+    119,
+    120,
+    120,
+    120,
+    119,
+    120
+  ],
+  "shown_drawable_acquisition_gaps_over_12_5_ms": 630,
+  "acquisition_reordering_count": 0,
+  "post_next_drawable_to_present_ms": {
+    "min": 11.485625125,
+    "median": 31.1967085,
+    "p99": 49.531275525,
+    "max": 49.5760415
+  },
+  "callback_after_present_p99_ms": 0.38324972500000015,
+  "presentation_clock_hz": 24000000,
+  "max_presentation_clock_grid_error_ticks": 0.0078125,
+  "uncommitted_final_records_excluded": 0,
+  "observed_unpresented_records_in_acquisition_span": 0,
+  "interval_histogram_nominal_120_periods": {
+    "at_most_1_5": 1728,
+    "over_1_5_at_most_2_5": 630,
+    "over_2_5_at_most_3_5": 3,
+    "over_3_5": 1
+  },
+  "interval_policy": "Complete presentation intervals intersecting the fixed window, including boundaries",
+  "limitation": "Post-nextDrawable gaps are between shown drawables, not all acquisitions; no CPU/GPU/compositor cause attribution. Histogram uses a nominal 120 Hz period, not a verified fixed refresh rate.",
+  "qualification": {
+    "sample_seconds": 25.0,
+    "drawable_sizes": {
+      "3456x2234": 2361
+    },
+    "onscreen_layer_count": 1,
+    "foreground": {
+      "samples": 102,
+      "activation_events": 0,
+      "max_gap_ms": 253.167417
+    },
+    "numeric_120_pass": false
+  },
+  "collection_role": "light probe only"
+}

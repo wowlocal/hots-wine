@@ -1,0 +1,50 @@
+{
+  "reviews": [
+    {
+      "role": "protocol",
+      "model": "claude-opus-5-5",
+      "effort": "xhigh",
+      "is_error": false,
+      "response_sha256": "22767c2d0b80130fc0a59830e17b2bbf7759b0ed40b2ebf9ed728977a2d73251"
+    },
+    {
+      "role": "tracing-followup",
+      "model": "claude-opus-5-5",
+      "effort": "xhigh",
+      "is_error": false,
+      "response_sha256": "5bfb9224c773c5047173b169bc1d5483d1597e3f1046c136bd0288b1ed29f21a"
+    },
+    {
+      "role": "pipeline-code-review",
+      "model": "claude-opus-5-5",
+      "effort": "xhigh",
+      "is_error": false,
+      "response_sha256": "799e22c0e8d9c63b8f19f695a572cde8ad6bd1f0bc55f74747d4fb70d6ae39b2"
+    },
+    {
+      "role": "final-interpretation-review",
+      "model": "claude-opus-5-5",
+      "effort": "xhigh",
+      "is_error": false,
+      "response_sha256": "e67a823c4ea9ff3bbd0ee1b1da5d1208e10bd06dacda462b2d61ba29859c7e3c"
+    }
+  ],
+  "code_review_changes": [
+    "Explicitly label acquisition gaps as gaps between shown drawables",
+    "Count observed unpresented records and excluded final records",
+    "Check clock consistency on both boundary frames and verify native timestamp grid",
+    "Require .json output and matching producer timebase",
+    "Export nominal-period histogram without asserting fixed-refresh mode",
+    "Sanitize filesystem/process errors"
+  ],
+  "input_trust": "Caller supplies the existing qualifier result and original private recording; these are not a cryptographic attestation",
+  "analysis_script_sha256": "5ab14267be9c1202fdc80483058dd34549cff3868866010e5e02ed213309d08c",
+  "interpretation_review_changes": [
+    "Disclose all five ControlCenter compiler events and check hitch overlap",
+    "Verify return-gap/presentation-latency identity against adjacent frame records",
+    "Limit refresh and thermal claims to measured evidence",
+    "Explicitly retain non-presenting GPU and synchronization waits as possibilities",
+    "Disclose unpresented count, post-hoc thread selection and descriptive comparison rule",
+    "Document temporary raw-trace retention"
+  ]
+}
